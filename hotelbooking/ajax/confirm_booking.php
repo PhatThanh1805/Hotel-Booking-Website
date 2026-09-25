@@ -3,7 +3,7 @@
   require('../admin/inc/db_config.php');
   require('../admin/inc/essentials.php');
 
-  date_default_timezone_set("Asia/Kolkata");
+  date_default_timezone_set("Asia/Ho_Chi_Minh");
 
   if(isset($_POST['check_availability']))
   {
@@ -37,7 +37,9 @@
       echo $result;
     }
     else{
-      session_start();
+      if(session_status() == PHP_SESSION_NONE){
+        session_start();
+      }
 
       // run query to check room is available or not 
 

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php require('inc/links.php'); ?>
-  <title><?php echo $settings_r['site_title'] ?> - CONFIRM BOOKING</title>
+  <title><?php echo $settings_r['site_title'] ?> - XÁC NHẬN ĐẶT PHÒNG</title>
 </head>
 <body class="bg-light">
 
@@ -13,20 +13,12 @@
 
   <?php 
 
-    /*
-      Check room id from url is present or not
-      Shutdown mode is active or not
-      User is logged in or not
-    */
-
     if(!isset($_GET['id']) || $settings_r['shutdown']==true){
       redirect('rooms.php');
     }
     else if(!(isset($_SESSION['login']) && $_SESSION['login']==true)){
       redirect('rooms.php');
     }
-
-    // filter and get room and user data
 
     $data = filteration($_GET);
 
@@ -37,6 +29,7 @@
     }
 
     $room_data = mysqli_fetch_assoc($room_res);
+    $price_formatted = number_format($room_data['price'] * 1000, 0, ',', '.');
 
     $_SESSION['room'] = [
       "id" => $room_data['id'],
@@ -46,29 +39,28 @@
       "available" => false,
     ];
 
-
     $user_res = select("SELECT * FROM `user_cred` WHERE `id`=? LIMIT 1", [$_SESSION['uId']], "i");
     $user_data = mysqli_fetch_assoc($user_res);
 
+    $booking_created_at = date("d/m/Y H:i:s");
   ?>
-
-
 
   <div class="container">
     <div class="row">
 
       <div class="col-12 my-5 mb-4 px-4">
-        <h2 class="fw-bold">CONFIRM BOOKING</h2>
-        <div style="font-size: 14px;">
-          <a href="index.php" class="text-secondary text-decoration-none">HOME</a>
-          <span class="text-secondary"> > </span>
-          <a href="rooms.php" class="text-secondary text-decoration-none">ROOMS</a>
-          <span class="text-secondary"> > </span>
-          <a href="#" class="text-secondary text-decoration-none">CONFIRM</a>
+        <h2 class="fw-bold text-dark">XÁC NHẬN ĐẶT PHÒNG</h2>
+        <div style="font-size: 15px;" class="fw-medium">
+          <a href="index.php" class="text-secondary text-decoration-none"><i class="bi bi-house me-1"></i>TRANG CHỦ</a>
+          <span class="text-secondary mx-2"> > </span>
+          <a href="rooms.php" class="text-secondary text-decoration-none">DANH SÁCH PHÒNG</a>
+          <span class="text-secondary mx-2"> > </span>
+          <span class="text-dark">XÁC NHẬN ĐẶT PHÒNG</span>
         </div>
       </div>
 
-      <div class="col-lg-7 col-md-12 px-4">
+      <!-- Ảnh và thông tin phòng -->
+      <div class="col-lg-7 col-md-12 px-4 mb-4">
         <?php 
 
           $room_thumb = ROOMS_IMG_PATH."thumbnail.jpg";
@@ -82,51 +74,63 @@
           }
 
           echo<<<data
-            <div class="card p-3 shadow-sm rounded">
-              <img src="$room_thumb" class="img-fluid rounded mb-3">
-              <h5>$room_data[name]</h5>
-              <h6>₹$room_data[price] per night</h6>
+            <div class="card p-3 shadow-sm border-0 rounded-4 pop">
+              <img src="$room_thumb" class="img-fluid rounded-3 mb-3" style="height: 350px; object-fit: cover;">
+              <h4 class="fw-bold text-dark mb-1">$room_data[name]</h4>
+              <h5 class="text-teal fw-bold">$price_formatted VNĐ <span class="fs-6 text-muted fw-normal">/ đêm</span></h5>
             </div>
           data;
 
         ?>
       </div>
 
+      <!-- Form nhập thông tin đặt phòng -->
       <div class="col-lg-5 col-md-12 px-4">
-        <div class="card mb-4 border-0 shadow-sm rounded-3">
+        <div class="card mb-4 border-0 shadow-sm rounded-4 p-3">
           <div class="card-body">
             <form action="pay_now.php" method="POST" id="booking_form">
-              <h6 class="mb-3">BOOKING DETAILS</h6>
+              <h5 class="mb-3 fw-bold text-dark border-bottom pb-2">
+                <i class="bi bi-journal-check text-teal me-2"></i>THÔNG TIN ĐẶT PHÒNG
+              </h5>
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label class="form-label">Name</label>
-                  <input name="name" type="text" value="<?php echo $user_data['name'] ?>" class="form-control shadow-none" required>
+                  <label class="form-label fw-semibold">Họ và tên khách hàng</label>
+                  <input name="name" type="text" value="<?php echo $user_data['name'] ?>" class="form-control shadow-none py-2 rounded-3" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label class="form-label">Phone Number</label>
-                  <input name="phonenum" type="number" value="<?php echo $user_data['phonenum'] ?>" class="form-control shadow-none" required>
+                  <label class="form-label fw-semibold">Số điện thoại</label>
+                  <input name="phonenum" type="number" value="<?php echo $user_data['phonenum'] ?>" class="form-control shadow-none py-2 rounded-3" required>
                 </div>
                 <div class="col-md-12 mb-3">
-                  <label class="form-label">Address</label>
-                  <textarea name="address" class="form-control shadow-none" rows="1" required><?php echo $user_data['address'] ?></textarea>
+                  <label class="form-label fw-semibold">Địa chỉ liên hệ</label>
+                  <textarea name="address" class="form-control shadow-none rounded-3" rows="2" required><?php echo $user_data['address'] ?></textarea>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label class="form-label">Check-in</label>
-                  <input name="checkin" onchange="check_availability()" type="date" class="form-control shadow-none" required>
+                  <label class="form-label fw-semibold">Ngày nhận phòng</label>
+                  <input name="checkin" onchange="check_availability()" type="date" class="form-control shadow-none py-2 rounded-3" required>
                 </div>
-                <div class="col-md-6 mb-4">
-                  <label class="form-label">Check-out</label>
-                  <input name="checkout" onchange="check_availability()" type="date" class="form-control shadow-none" required>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-semibold">Ngày trả phòng</label>
+                  <input name="checkout" onchange="check_availability()" type="date" class="form-control shadow-none py-2 rounded-3" required>
+                </div>
+                
+                <div class="col-md-12 mb-3">
+                  <label class="form-label fw-semibold text-secondary">Thời gian thực hiện đặt phòng</label>
+                  <input type="text" value="<?php echo $booking_created_at ?>" class="form-control shadow-none py-2 rounded-3 bg-light" readonly>
                 </div>
                 
                 <div class="col-12">
-                  <div class="spinner-border text-info mb-3 d-none" id="info_loader" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <div class="spinner-border text-teal mb-3 d-none" id="info_loader" role="status">
+                    <span class="visually-hidden">Đang tính toán giá...</span>
                   </div>
 
-                  <h6 class="mb-3 text-danger" id="pay_info">Provide check-in & check-out date !</h6>
+                  <div class="alert alert-warning border-0 rounded-3 mb-3 p-3" id="pay_info">
+                    <i class="bi bi-info-circle-fill me-1"></i> Vui lòng chọn <strong>Ngày nhận phòng</strong> & <strong>Ngày trả phòng</strong> để tính giá!
+                  </div>
 
-                  <button name="pay_now" class="btn w-100 text-white custom-bg shadow-none mb-1" disabled>Pay Now</button>
+                  <button name="pay_now" class="btn w-100 text-white custom-bg shadow-none py-2 rounded-3 fs-6 fw-bold" disabled>
+                    <i class="bi bi-credit-card me-1"></i> THANH TOÁN NGAY
+                  </button>
                 </div>
               </div>
             </form>
@@ -155,7 +159,6 @@
       if(checkin_val!='' && checkout_val!='')
       {
         pay_info.classList.add('d-none');
-        pay_info.classList.replace('text-dark','text-danger');
         info_loader.classList.remove('d-none');
 
         let data = new FormData();
@@ -171,21 +174,33 @@
         {
           let data = JSON.parse(this.responseText);
 
+          pay_info.className = 'alert border-0 rounded-3 mb-3 p-3';
+
           if(data.status == 'check_in_out_equal'){
-            pay_info.innerText = "You cannot check-out on the same day!";
+            pay_info.classList.add('alert-danger');
+            pay_info.innerHTML = "<i class='bi bi-exclamation-triangle-fill me-1'></i> Ngày trả phòng không được trùng với ngày nhận phòng!";
           }
           else if(data.status == 'check_out_earlier'){
-            pay_info.innerText = "Check-out date is earlier than check-in date!";
+            pay_info.classList.add('alert-danger');
+            pay_info.innerHTML = "<i class='bi bi-exclamation-triangle-fill me-1'></i> Ngày trả phòng không được trước ngày nhận phòng!";
           }
           else if(data.status == 'check_in_earlier'){
-            pay_info.innerText = "Check-in date is earlier than today's date!";
+            pay_info.classList.add('alert-danger');
+            pay_info.innerHTML = "<i class='bi bi-exclamation-triangle-fill me-1'></i> Ngày nhận phòng không được ở quá khứ!";
           }
           else if(data.status == 'unavailable'){
-            pay_info.innerText = "Room not available for this check-in date!";
+            pay_info.classList.add('alert-danger');
+            pay_info.innerHTML = "<i class='bi bi-exclamation-triangle-fill me-1'></i> Rất tiếc, phòng đã được đặt kín vào khoảng thời gian này!";
           }
           else{
-            pay_info.innerHTML = "No. of Days: "+data.days+"<br>Total Amount to Pay: ₹"+data.payment;
-            pay_info.classList.replace('text-danger','text-dark');
+            let formatted_payment = new Intl.NumberFormat('vi-VN').format(data.payment * 1000);
+            pay_info.classList.add('alert-success');
+            pay_info.innerHTML = `
+              <div class="fw-bold mb-1"><i class="bi bi-check-circle-fill me-1"></i> Đặt phòng khả dụng!</div>
+              <div>• <strong>Số đêm lưu trú:</strong> ${data.days} đêm</div>
+              <div>• <strong>Thời gian tạo đơn:</strong> <?php echo $booking_created_at ?></div>
+              <div>• <strong>Tổng tiền thanh toán:</strong> <span class="fs-5 text-teal fw-bold">${formatted_payment} VNĐ</span></div>
+            `;
             booking_form.elements['pay_now'].removeAttribute('disabled');
           }
 

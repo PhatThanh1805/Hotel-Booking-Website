@@ -19,43 +19,42 @@
     $table_data = "";
 
     if(mysqli_num_rows($res)==0){
-      echo"<b>No Data Found!</b>";
+      echo "<tr><td colspan='5' class='py-4 text-secondary fs-6'>Không có đơn hủy nào cần xử lý hoàn tiền!</td></tr>";
       exit;
     }
 
     while($data = mysqli_fetch_assoc($res))
     {
-      $date = date("d-m-Y",strtotime($data['datentime']));
-      $checkin = date("d-m-Y",strtotime($data['check_in']));
-      $checkout = date("d-m-Y",strtotime($data['check_out']));
+      $date = date("d/m/Y H:i",strtotime($data['datentime']));
+      $checkin = date("d/m/Y",strtotime($data['check_in']));
+      $checkout = date("d/m/Y",strtotime($data['check_out']));
+      $total_formatted = number_format($data['trans_amt'] * 1000, 0, ',', '.');
 
       $table_data .="
         <tr>
           <td>$i</td>
-          <td>
-            <span class='badge bg-primary'>
-              Order ID: $data[order_id]
+          <td class='text-start'>
+            <span class='badge bg-teal mb-1 px-2 py-1'>
+              Mã đơn: $data[order_id]
             </span>
             <br>
-            <b>Name:</b> $data[user_name]
+            <b>Họ tên:</b> $data[user_name]
             <br>
-            <b>Phone No:</b> $data[phonenum]
+            <b>SĐT:</b> $data[phonenum]
+          </td>
+          <td class='text-start'>
+            <b>Tên phòng:</b> $data[room_name]
+            <br>
+            <b>Ngày nhận:</b> $checkin | <b>Trả:</b> $checkout
+            <br>
+            <b>Ngày đặt:</b> $date
           </td>
           <td>
-            <b>Room:</b> $data[room_name]
-            <br>
-            <b>Check-in:</b> $checkin
-            <br>
-            <b>Check-out:</b> $checkout
-            <br>
-            <b>Date:</b> $date
+            <b class='text-danger fs-6'>$total_formatted VNĐ</b> 
           </td>
           <td>
-            <b>₹$data[trans_amt]</b> 
-          </td>
-          <td>
-            <button type='button' onclick='refund_booking($data[booking_id])' class='btn btn-success btn-sm fw-bold shadow-none'>
-              <i class='bi bi-cash-stack'></i> Refund
+            <button type='button' onclick='refund_booking($data[booking_id])' class='btn btn-success btn-sm fw-bold shadow-none rounded-3 px-3'>
+              <i class='bi bi-cash-stack me-1'></i> Duyệt Hoàn Tiền
             </button>
           </td>
         </tr>

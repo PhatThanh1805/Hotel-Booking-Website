@@ -1,3 +1,6 @@
+let current_status_filter = 'all';
+let current_search_query = '';
+
 let add_room_form = document.getElementById('add_room_form');
     
 add_room_form.addEventListener('submit',function(e){
@@ -43,12 +46,13 @@ function add_room()
     modal.hide();
 
     if(this.responseText == 1){
-      alert('success','New room added!');
+      alert('success','Đã thêm loại phòng mới!');
       add_room_form.reset();
       get_all_rooms();
+      get_room_stats();
     }
     else{
-      alert('error','Server Down!');
+      alert('error','Lỗi hệ thống!');
     }
   }
 
@@ -65,7 +69,61 @@ function get_all_rooms()
     document.getElementById('room-data').innerHTML = this.responseText;
   }
 
-  xhr.send('get_all_rooms');
+  let params = 'get_all_rooms=1' +
+               '&status_filter=' + encodeURIComponent(current_status_filter) +
+               '&search_query=' + encodeURIComponent(current_search_query);
+
+  xhr.send(params);
+}
+
+function get_room_stats()
+{
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST","ajax/rooms.php",true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+  xhr.onload = function(){
+    try {
+      let data = JSON.parse(this.responseText);
+      if(document.getElementById('stat_available')) document.getElementById('stat_available').innerText = data.available || 0;
+      if(document.getElementById('stat_cleaning')) document.getElementById('stat_cleaning').innerText = data.cleaning || 0;
+      if(document.getElementById('stat_occupied')) document.getElementById('stat_occupied').innerText = data.occupied || 0;
+      if(document.getElementById('stat_booked')) document.getElementById('stat_booked').innerText = data.booked || 0;
+      if(document.getElementById('stat_maintenance')) document.getElementById('stat_maintenance').innerText = data.maintenance || 0;
+      if(document.getElementById('stat_total')) document.getElementById('stat_total').innerText = data.total || 0;
+    } catch(e) {
+      console.error("Error parsing stats data", e);
+    }
+  }
+
+  xhr.send('get_room_stats=1');
+}
+
+function filterByStatus(status, btnElement)
+{
+  current_status_filter = status;
+  
+  // Highlight active tab
+  let tabs = document.querySelectorAll('#status-filter-tabs .filter-tab');
+  tabs.forEach(tab => {
+    tab.classList.remove('active', 'btn-dark', 'btn-success', 'btn-warning', 'btn-danger', 'btn-primary', 'btn-secondary');
+    if(!tab.className.includes('btn-outline-')) {
+      // Restore outline default
+    }
+  });
+
+  if(btnElement) {
+    btnElement.classList.add('active');
+  }
+
+  get_all_rooms();
+}
+
+function onSearchInput()
+{
+  let input = document.getElementById('search_room_input');
+  current_search_query = input ? input.value : '';
+  get_all_rooms();
 }
 
 let edit_room_form = document.getElementById('edit_room_form');
@@ -148,35 +206,48 @@ function submit_edit_room()
     modal.hide();
 
     if(this.responseText == 1){
-      alert('success','Room data edited!');
+      alert('success','Cập nhật thông tin phòng thành công!');
       edit_room_form.reset();
       get_all_rooms();
     }
     else{
-      alert('error','Server Down!');
+      alert('error','Lỗi hệ thống!');
     }
   }
 
   xhr.send(data);
 }
 
-function toggle_status(id,val)
+function change_status(room_id, val)
 {
   let xhr = new XMLHttpRequest();
   xhr.open("POST","ajax/rooms.php",true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
   xhr.onload = function(){
-    if(this.responseText==1){
-      alert('success','Status toggled!');
+    if(this.responseText == 1){
+      let statusNames = {
+        1: 'Phòng Đang Trống (Available)',
+        2: 'Đang Dọn Dẹp (Cleaning)',
+        3: 'Đang Có Khách (Occupied)',
+        4: 'Đã Được Đặt (Booked)',
+        0: 'Tạm Dừng / Bảo Trì'
+      };
+      alert('success', 'Đã chuyển trạng thái phòng sang: ' + (statusNames[val] || val));
       get_all_rooms();
+      get_room_stats();
     }
     else{
-      alert('success','Server Down!');
+      alert('error','Cập nhật trạng thái phòng thất bại!');
     }
   }
 
-  xhr.send('toggle_status='+id+'&value='+val);
+  xhr.send('change_status=1&room_id='+room_id+'&val='+val);
+}
+
+function toggle_status(id,val)
+{
+  change_status(id, val);
 }
 
 let add_image_form = document.getElementById('add_image_form');
@@ -199,16 +270,16 @@ function add_image()
   xhr.onload = function()
   {
     if(this.responseText == 'inv_img'){
-      alert('error','Only JPG, WEBP or PNG images are allowed!','image-alert');
+      alert('error','Chỉ chấp nhận định dạng JPG, WEBP hoặc PNG!','image-alert');
     }
     else if(this.responseText == 'inv_size'){
-      alert('error','Image should be less than 2MB!','image-alert');
+      alert('error','Kích thước ảnh phải nhỏ hơn 2MB!','image-alert');
     }
     else if(this.responseText == 'upd_failed'){
-      alert('error','Image upload failed. Server Down!','image-alert');
+      alert('error','Tải ảnh lên thất bại. Lỗi máy chủ!','image-alert');
     }
     else{
-      alert('success','New image added!','image-alert');
+      alert('success','Đã thêm ảnh mới cho phòng!','image-alert');
       room_images(add_image_form.elements['room_id'].value,document.querySelector("#room-images .modal-title").innerText)
       add_image_form.reset();
     }
@@ -246,11 +317,11 @@ function rem_image(img_id,room_id)
   xhr.onload = function()
   {
     if(this.responseText == 1){
-      alert('success','Image Removed!','image-alert');
+      alert('success','Đã xóa ảnh thành công!','image-alert');
       room_images(room_id,document.querySelector("#room-images .modal-title").innerText);
     }
     else{
-      alert('error','Image removal failed!','image-alert');
+      alert('error','Xóa ảnh thất bại!','image-alert');
     }
   }
   xhr.send(data);  
@@ -269,11 +340,11 @@ function thumb_image(img_id,room_id)
   xhr.onload = function()
   {
     if(this.responseText == 1){
-      alert('success','Image Thumbnail Changed!','image-alert');
+      alert('success','Đã thay đổi ảnh đại diện!','image-alert');
       room_images(room_id,document.querySelector("#room-images .modal-title").innerText);
     }
     else{
-      alert('error','Thumbnail update failed!','image-alert');
+      alert('error','Cập nhật ảnh đại diện thất bại!','image-alert');
     }
   }
   xhr.send(data);  
@@ -281,7 +352,7 @@ function thumb_image(img_id,room_id)
 
 function remove_room(room_id)
 {
-  if(confirm("Are you sure, you want to delete this room?"))
+  if(confirm("Bạn có chắc chắn muốn xóa phòng này không?"))
   {
     let data = new FormData();
     data.append('room_id',room_id);
@@ -293,11 +364,12 @@ function remove_room(room_id)
     xhr.onload = function()
     {
       if(this.responseText == 1){
-        alert('success','Room Removed!');
+        alert('success','Đã xóa phòng thành công!');
         get_all_rooms();
+        get_room_stats();
       }
       else{
-        alert('error','Room removal failed!');
+        alert('error','Xóa phòng thất bại!');
       }
     }
     xhr.send(data);
@@ -307,4 +379,5 @@ function remove_room(room_id)
 
 window.onload = function(){
   get_all_rooms();
+  get_room_stats();
 }

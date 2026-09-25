@@ -2,7 +2,7 @@
 
   require('../admin/inc/db_config.php');
   require('../admin/inc/essentials.php');
-  date_default_timezone_set("Asia/Kolkata");
+  date_default_timezone_set("Asia/Ho_Chi_Minh");
 
   session_start();
 
@@ -19,15 +19,15 @@
       $checkout_date = new DateTime($chk_avail['checkout']);
   
       if($checkin_date == $checkout_date){
-        echo"<h3 class='text-center text-danger'>Invalid Dates Entered!</h3>";
+        echo"<h3 class='text-center text-danger py-4 fw-bold'>Ngày nhận phòng và trả phòng không được trùng nhau!</h3>";
         exit;
       }
       else if($checkout_date < $checkin_date){
-        echo"<h3 class='text-center text-danger'>Invalid Dates Entered!</h3>";
+        echo"<h3 class='text-center text-danger py-4 fw-bold'>Ngày trả phòng phải sau ngày nhận phòng!</h3>";
         exit;
       }
       else if($checkin_date < $today_date){
-        echo"<h3 class='text-center text-danger'>Invalid Dates Entered!</h3>";
+        echo"<h3 class='text-center text-danger py-4 fw-bold'>Ngày nhận phòng không được ở quá khứ!</h3>";
         exit;
       }
     }
@@ -84,7 +84,7 @@
           $fac_count++;
         }
 
-        $facilities_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+        $facilities_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1 border'>
           $fac_row[name]
         </span>";
       }
@@ -94,22 +94,20 @@
       }
 
 
-      // get features of room
-
+      // Đặc điểm nổi bật phòng
       $fea_q = mysqli_query($con,"SELECT f.name FROM `features` f 
         INNER JOIN `room_features` rfea ON f.id = rfea.features_id 
         WHERE rfea.room_id = '$room_data[id]'");
 
       $features_data = "";
       while($fea_row = mysqli_fetch_assoc($fea_q)){
-        $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+        $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1 border'>
           $fea_row[name]
         </span>";
       }
 
 
-      // get thumbnail of image
-
+      // Ảnh thumbnail
       $room_thumb = ROOMS_IMG_PATH."thumbnail.jpg";
       $thumb_q = mysqli_query($con,"SELECT * FROM `room_images` 
         WHERE `room_id`='$room_data[id]' 
@@ -128,41 +126,43 @@
           $login=1;
         }
 
-        $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm w-100 text-white custom-bg shadow-none mb-2'>Book Now</button>";
+        $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm w-100 text-white custom-bg shadow-none mb-2 rounded-3 py-2 fw-semibold'><i class='bi bi-cart-check me-1'></i>Đặt phòng ngay</button>";
       }
 
-      // print room card
+      $price_formatted = number_format($room_data['price'] * 1000, 0, ',', '.');
 
+      // print room card
       $output.="
-        <div class='card mb-4 border-0 shadow'>
+        <div class='card mb-4 border-0 shadow-sm rounded-4 overflow-hidden pop'>
           <div class='row g-0 p-3 align-items-center'>
             <div class='col-md-5 mb-lg-0 mb-md-0 mb-3'>
-              <img src='$room_thumb' class='img-fluid rounded'>
+              <img src='$room_thumb' class='img-fluid rounded-3 w-100' style='height: 210px; object-fit: cover;'>
             </div>
-            <div class='col-md-5 px-lg-3 px-md-3 px-0'>
-              <h5 class='mb-3'>$room_data[name]</h5>
-              <div class='features mb-3'>
-                <h6 class='mb-1'>Features</h6>
+            <div class='col-md-5 px-lg-4 px-md-3 px-0'>
+              <h5 class='mb-2 fw-bold text-dark'>$room_data[name]</h5>
+              <div class='features mb-2'>
+                <h6 class='mb-1 fw-bold text-secondary' style='font-size: 13px;'>Đặc điểm:</h6>
                 $features_data
               </div>
-              <div class='facilities mb-3'>
-                <h6 class='mb-1'>Facilities</h6>
+              <div class='facilities mb-2'>
+                <h6 class='mb-1 fw-bold text-secondary' style='font-size: 13px;'>Tiện ích:</h6>
                 $facilities_data
               </div>
-              <div class='guests'>
-                <h6 class='mb-1'>Guests</h6>
-                <span class='badge rounded-pill bg-light text-dark text-wrap'>
-                  $room_data[adult] Adults
+              <div class='guests mb-2'>
+                <h6 class='mb-1 fw-bold text-secondary' style='font-size: 13px;'>Sức chứa:</h6>
+                <span class='badge rounded-pill bg-light text-dark text-wrap border me-1'>
+                  <i class='bi bi-person me-1'></i>$room_data[adult] Người lớn
                 </span>
-                <span class='badge rounded-pill bg-light text-dark text-wrap'>
-                  $room_data[children] Children
+                <span class='badge rounded-pill bg-light text-dark text-wrap border'>
+                  <i class='bi bi-emoji-smile me-1'></i>$room_data[children] Trẻ em
                 </span>
               </div>
             </div>
-            <div class='col-md-2 mt-lg-0 mt-md-0 mt-4 text-center'>
-              <h6 class='mb-4'>₹$room_data[price] per night</h6>
+            <div class='col-md-2 mt-lg-0 mt-md-0 mt-3 text-center border-start-lg ps-lg-3'>
+              <h5 class='mb-1 text-teal fw-bold'>$price_formatted VNĐ</h5>
+              <small class='text-muted d-block mb-3'>mỗi đêm</small>
               $book_btn
-              <a href='room_details.php?id=$room_data[id]' class='btn btn-sm w-100 btn-outline-dark shadow-none'>More details</a>
+              <a href='room_details.php?id=$room_data[id]' class='btn btn-sm w-100 btn-outline-dark shadow-none rounded-3 py-2'><i class='bi bi-eye me-1'></i>Chi tiết</a>
             </div>
           </div>
         </div>
@@ -175,10 +175,9 @@
       echo $output;
     }
     else{
-      echo"<h3 class='text-center text-danger'>No rooms to show!</h3>";
+      echo"<h3 class='text-center text-secondary py-5'>Không tìm thấy phòng nghỉ phù hợp với yêu cầu!</h3>";
     }
 
   }
-
 
 ?>

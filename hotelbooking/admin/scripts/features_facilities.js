@@ -21,12 +21,12 @@ function add_feature()
     modal.hide();
 
     if(this.responseText == 1){
-      alert('success','New feature added!');
+      alert('success','Đã thêm đặc điểm mới!');
       feature_s_form.elements['feature_name'].value='';
       get_features();
     }
     else{
-      alert('error','Server Down!');
+      alert('error','Lỗi máy chủ!');
     }
   }
 
@@ -54,14 +54,14 @@ function rem_feature(val)
 
   xhr.onload = function(){
     if(this.responseText==1){
-      alert('success','Feature removed!');
+      alert('success','Đã xóa đặc điểm!');
       get_features();
     }
     else if(this.responseText == 'room_added'){
-      alert('error','Feature is added in room!');
+      alert('error','Đặc điểm này đang được gán cho phòng, không thể xóa!');
     }
     else{
-      alert('error','Server down!');
+      alert('error','Lỗi máy chủ!');
     }
   }
 
@@ -90,16 +90,16 @@ function add_facility()
     modal.hide();
 
     if(this.responseText == 'inv_img'){
-      alert('error','Only SVG images are allowed!');
+      alert('error','Chỉ cho phép tải lên file SVG!');
     }
     else if(this.responseText == 'inv_size'){
-      alert('error','Image should be less than 1MB!');
+      alert('error','Kích thước file phải nhỏ hơn 1MB!');
     }
     else if(this.responseText == 'upd_failed'){
-      alert('error','Image upload failed. Server Down!');
+      alert('error','Tải lên biểu tượng thất bại. Lỗi máy chủ!');
     }
     else{
-      alert('success','New facility added!');
+      alert('success','Đã thêm tiện ích mới!');
       facility_s_form.reset();
       get_facilities();
     }
@@ -129,14 +129,14 @@ function rem_facility(val)
 
   xhr.onload = function(){
     if(this.responseText==1){
-      alert('success','Facility removed!');
+      alert('success','Đã xóa tiện ích!');
       get_facilities();
     }
     else if(this.responseText == 'room_added'){
-      alert('error','Facility is added in room!');
+      alert('error','Tiện ích này đang được gán cho phòng, không thể xóa!');
     }
     else{
-      alert('error','Server down!');
+      alert('error','Lỗi máy chủ!');
     }
   }
 

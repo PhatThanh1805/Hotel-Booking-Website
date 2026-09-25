@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php require('inc/links.php'); ?>
-  <title><?php echo $settings_r['site_title'] ?> - ROOM DETAILS</title>
+  <title><?php echo $settings_r['site_title'] ?> - CHI TIẾT PHÒNG</title>
 </head>
 <body class="bg-light">
 
@@ -25,24 +25,25 @@
     }
 
     $room_data = mysqli_fetch_assoc($room_res);
+    $price_formatted = number_format($room_data['price'] * 1000, 0, ',', '.');
   ?>
-
-
 
   <div class="container">
     <div class="row">
 
       <div class="col-12 my-5 mb-4 px-4">
-        <h2 class="fw-bold"><?php echo $room_data['name'] ?></h2>
-        <div style="font-size: 14px;">
-          <a href="index.php" class="text-secondary text-decoration-none">HOME</a>
-          <span class="text-secondary"> > </span>
-          <a href="rooms.php" class="text-secondary text-decoration-none">ROOMS</a>
+        <h2 class="fw-bold text-dark"><?php echo $room_data['name'] ?></h2>
+        <div style="font-size: 15px;" class="fw-medium">
+          <a href="index.php" class="text-secondary text-decoration-none"><i class="bi bi-house me-1"></i>TRANG CHỦ</a>
+          <span class="text-secondary mx-2"> > </span>
+          <a href="rooms.php" class="text-secondary text-decoration-none">DANH SÁCH PHÒNG</a>
+          <span class="text-secondary mx-2"> > </span>
+          <span class="text-dark"><?php echo $room_data['name'] ?></span>
         </div>
       </div>
 
-      <div class="col-lg-7 col-md-12 px-4">
-        <div id="roomCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="col-lg-7 col-md-12 px-4 mb-4">
+        <div id="roomCarousel" class="carousel slide shadow-sm rounded-4 overflow-hidden" data-bs-ride="carousel">
           <div class="carousel-inner">
             <?php 
 
@@ -58,7 +59,7 @@
                 {
                   echo"
                     <div class='carousel-item $active_class'>
-                      <img src='".ROOMS_IMG_PATH.$img_res['image']."' class='d-block w-100 rounded'>
+                      <img src='".ROOMS_IMG_PATH.$img_res['image']."' class='d-block w-100 rounded-4' style='height: 420px; object-fit: cover;'>
                     </div>
                   ";
                   $active_class='';
@@ -67,7 +68,7 @@
               }
               else{
                 echo"<div class='carousel-item active'>
-                  <img src='$room_img' class='d-block w-100'>
+                  <img src='$room_img' class='d-block w-100 rounded-4' style='height: 420px; object-fit: cover;'>
                 </div>";
               }
 
@@ -75,23 +76,24 @@
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#roomCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="visually-hidden">Trước</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#roomCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden">Sau</span>
           </button>
         </div>
 
       </div>
 
       <div class="col-lg-5 col-md-12 px-4">
-        <div class="card mb-4 border-0 shadow-sm rounded-3">
+        <div class="card mb-4 border-0 shadow-sm rounded-4 p-3">
           <div class="card-body">
             <?php 
 
               echo<<<price
-                <h4>₹$room_data[price] per night</h4>
+                <h3 class="fw-bold text-teal mb-1">$price_formatted VNĐ</h3>
+                <span class="text-muted d-block mb-3">mỗi đêm nghỉ</span>
               price;
 
               $rating_q = "SELECT AVG(rating) AS `avg_rating` FROM `rating_review`
@@ -121,14 +123,14 @@
 
               $features_data = "";
               while($fea_row = mysqli_fetch_assoc($fea_q)){
-                $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+                $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1 border'>
                   $fea_row[name]
                 </span>";
               }
 
               echo<<<features
                 <div class="mb-3">
-                  <h6 class="mb-1">Features</h6>
+                  <h6 class="mb-1 fw-bold text-secondary">Đặc điểm nổi bật:</h6>
                   $features_data
                 </div>
               features;
@@ -139,35 +141,35 @@
 
               $facilities_data = "";
               while($fac_row = mysqli_fetch_assoc($fac_q)){
-                $facilities_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+                $facilities_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1 border'>
                   $fac_row[name]
                 </span>";
               }
               
               echo<<<facilities
                 <div class="mb-3">
-                  <h6 class="mb-1">Facilities</h6>
+                  <h6 class="mb-1 fw-bold text-secondary">Tiện ích đi kèm:</h6>
                   $facilities_data
                 </div>
               facilities;
 
               echo<<<guests
                 <div class="mb-3">
-                  <h6 class="mb-1">Guests</h6>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap">
-                    $room_data[adult] Adults
+                  <h6 class="mb-1 fw-bold text-secondary">Sức chứa tối đa:</h6>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap border me-1">
+                    <i class="bi bi-person me-1"></i>$room_data[adult] Người lớn
                   </span>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap">
-                    $room_data[children] Children
+                  <span class="badge rounded-pill bg-light text-dark text-wrap border">
+                    <i class="bi bi-emoji-smile me-1"></i>$room_data[children] Trẻ em
                   </span>
                 </div>
               guests;
 
               echo<<<area
-                <div class="mb-3">
-                  <h6 class="mb-1">Area</h6>
-                  <span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
-                    $room_data[area] sq. ft.
+                <div class="mb-4">
+                  <h6 class="mb-1 fw-bold text-secondary">Diện tích phòng:</h6>
+                  <span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1 border'>
+                    $room_data[area] m² (mét vuông)
                   </span>
                 </div>
               area;
@@ -178,7 +180,7 @@
                   $login=1;
                 }
                 echo<<<book
-                  <button onclick='checkLoginToBook($login,$room_data[id])' class="btn w-100 text-white custom-bg shadow-none mb-1">Book Now</button>
+                  <button onclick='checkLoginToBook($login,$room_data[id])' class="btn w-100 text-white custom-bg shadow-none mb-1 rounded-3 py-2 fs-6 fw-bold"><i class="bi bi-cart-check me-1"></i> ĐẶT PHÒNG NGAY</button>
                 book;
               }
 
@@ -188,15 +190,15 @@
       </div>
 
       <div class="col-12 mt-4 px-4">
-        <div class="mb-5">
-          <h5>Description</h5>
-          <p>
+        <div class="mb-5 bg-white p-4 rounded-4 shadow-sm">
+          <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-card-text text-teal me-2"></i>Mô Tả Phòng Nghỉ</h5>
+          <p class="lh-base text-secondary m-0">
             <?php echo $room_data['description'] ?>
           </p>
         </div>
 
-        <div>
-          <h5 class="mb-3">Reviews & Ratings</h5>
+        <div class="bg-white p-4 rounded-4 shadow-sm mb-5">
+          <h5 class="mb-4 fw-bold text-dark"><i class="bi bi-star-fill text-warning me-2"></i>Đánh Giá & Bình Luận Từ Khách Hàng</h5>
 
           <?php
             $review_q = "SELECT rr.*,uc.name AS uname, uc.profile, r.name AS rname FROM `rating_review` rr
@@ -209,7 +211,7 @@
             $img_path = USERS_IMG_PATH;
 
             if(mysqli_num_rows($review_res)==0){
-              echo 'No reviews yet!';
+              echo '<div class="text-secondary">Chưa có đánh giá nào cho phòng này!</div>';
             }
             else
             {
@@ -221,13 +223,13 @@
                 }
 
                 echo<<<reviews
-                  <div class="mb-4">
+                  <div class="mb-4 pb-3 border-bottom">
                     <div class="d-flex align-items-center mb-2">
-                      <img src="$img_path$row[profile]" class="rounded-circle" loading="lazy" width="30px">
-                      <h6 class="m-0 ms-2">$row[uname]</h6>
+                      <img src="$img_path$row[profile]" class="rounded-circle border me-2" loading="lazy" width="35px" height="35px" style="object-fit:cover;">
+                      <h6 class="m-0 fw-bold">$row[uname]</h6>
                     </div>
-                    <p class="mb-1">
-                      $row[review]
+                    <p class="mb-2 text-secondary">
+                      "$row[review]"
                     </p>
                     <div>
                       $stars

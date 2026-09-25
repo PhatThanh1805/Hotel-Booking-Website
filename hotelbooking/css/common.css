@@ -1,12 +1,15 @@
-:root{
-  --teal: #2ec1ac;
-  --teal_hover: #279e8c;
+:root {
+  --teal: #14b8a6;
+  --teal_hover: #0d9488;
+  --primary-dark: #0f172a;
+  --accent-gold: #f59e0b;
 }
 
-*{
-  font-family: 'Poppins', sans-serif;
+* {
+  font-family: 'Be Vietnam Pro', 'Poppins', sans-serif;
 }
-.h-font{
+
+.h-font {
   font-family: 'Merienda', cursive;
 }
 
@@ -20,24 +23,212 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.custom-bg{
-  background-color: var(--teal);
-  border: 1px solid var(--teal);
-}
-.custom-bg:hover{
-  background-color: var(--teal_hover);
-  border-color: var(--teal_hover);
+.text-teal {
+  color: var(--teal) !important;
 }
 
-.h-line{
-  width: 150px;
+.bg-teal {
+  background-color: var(--teal) !important;
+}
+
+.custom-bg {
+  background-color: var(--teal) !important;
+  border: 1px solid var(--teal) !important;
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+.custom-bg:hover {
+  background-color: var(--teal_hover) !important;
+  border-color: var(--teal_hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+}
+
+.h-line {
+  width: 120px;
   margin: 0 auto;
-  height: 1.7px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  border-radius: 2px;
 }
 
-.custom-alert{
+.custom-alert {
   position: fixed;
-  top: 80px;
+  top: 85px;
   right: 25px;
-  z-index: 1111;
+  z-index: 9999;
+  min-width: 320px;
+  max-width: 450px;
+  animation: slideInRight 0.3s ease-out;
 }
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Glassmorphism & Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pop:hover {
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Status Badges */
+.badge-available {
+  background-color: #10b981;
+  color: white;
+}
+.badge-cleaning {
+  background-color: #f59e0b;
+  color: white;
+}
+.badge-occupied {
+  background-color: #ef4444;
+  color: white;
+}
+.badge-booked {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* ==========================================================================
+   Smooth Light / Dark Mode System (Instant Anti-Flash & Smooth Toggle)
+   ========================================================================== */
+html.dark-mode,
+html.dark-mode body,
+body.dark-mode {
+  background-color: #0b1329 !important;
+  color: #e2e8f0 !important;
+}
+
+.btn-theme-toggle {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease;
+}
+.btn-theme-toggle:hover {
+  transform: scale(1.05);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+html.dark-mode .btn-theme-toggle,
+body.dark-mode .btn-theme-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #f8fafc !important;
+}
+
+html.dark-mode .bg-white, 
+html.dark-mode .bg-light,
+html.dark-mode .card:not(.bg-teal):not(.occupancy-gauge),
+body.dark-mode .bg-white, 
+body.dark-mode .bg-light,
+body.dark-mode .card:not(.bg-teal):not(.occupancy-gauge) {
+  background-color: #162032 !important;
+  color: #f1f5f9 !important;
+  border-color: #243048 !important;
+}
+
+html.dark-mode .text-dark,
+html.dark-mode h1, html.dark-mode h2, html.dark-mode h3, html.dark-mode h4, html.dark-mode h5, html.dark-mode h6,
+body.dark-mode .text-dark,
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 {
+  color: #f8fafc !important;
+}
+
+html.dark-mode .text-muted,
+html.dark-mode .text-secondary,
+body.dark-mode .text-muted,
+body.dark-mode .text-secondary {
+  color: #94a3b8 !important;
+}
+
+html.dark-mode .navbar-light,
+html.dark-mode #nav-bar,
+body.dark-mode .navbar-light,
+body.dark-mode #nav-bar {
+  background-color: #162032 !important;
+  border-bottom: 1px solid #243048 !important;
+}
+
+html.dark-mode .navbar-light .nav-link,
+body.dark-mode .navbar-light .nav-link {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .navbar-light .nav-link.active,
+html.dark-mode .navbar-light .nav-link:hover,
+body.dark-mode .navbar-light .nav-link.active,
+body.dark-mode .navbar-light .nav-link:hover {
+  color: var(--teal) !important;
+}
+
+html.dark-mode .form-control,
+html.dark-mode .form-select,
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html.dark-mode .form-control::placeholder,
+body.dark-mode .form-control::placeholder {
+  color: #64748b !important;
+}
+
+html.dark-mode .table,
+body.dark-mode .table {
+  color: #e2e8f0 !important;
+}
+
+html.dark-mode .table tr,
+html.dark-mode .table td,
+html.dark-mode .table th,
+body.dark-mode .table tr,
+body.dark-mode .table td,
+body.dark-mode .table th {
+  background-color: #162032 !important;
+  border-color: #243048 !important;
+  color: #e2e8f0 !important;
+}
+
+html.dark-mode .modal-content,
+body.dark-mode .modal-content {
+  background-color: #162032 !important;
+  color: #f8fafc !important;
+  border: 1px solid #243048 !important;
+}
+
+html.dark-mode .dropdown-menu,
+body.dark-mode .dropdown-menu {
+  background-color: #162032 !important;
+  border-color: #243048 !important;
+}
+
+html.dark-mode .dropdown-item,
+body.dark-mode .dropdown-item {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .dropdown-item:hover,
+body.dark-mode .dropdown-item:hover {
+  background-color: #243048 !important;
+  color: #ffffff !important;
+}
+
+
+

@@ -1,0 +1,1496 @@
+﻿SERVICE DIRECTORY
+
+
+                                   KẾ HOẠCH KIỂM THỬ
+Mã dự án
+	SD_SOF3032
+	Mã tài liệu
+	N3
+	Ngày
+	28/09/2025
+	
+
+GVHD: Chu Thị Ngân                     
+Nhóm:                        
+Tên thành viên: MaSV - Họ và tên        
+Hà Nội 29- 01-2023
+                         BẢN GHI NHẬN THAY ĐỔI TÀI LIỆU
+Ngày thay đổi
+	Vị trí thay đổi
+	Lý do 
+	Nguồn gốc
+	Phiên bản cũ
+	Mô tả thay đổi
+	Phiên bản mới
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	TRANG KÝ
+Người lập:                                                <Ngày>                        
+<Chức vụ>        
+Người xem xét:                                                <Ngày>                        
+        <Chức vụ>        
+Người phê duyệt:                                        <Ngày>                        
+<Chức vụ>        
+MỤC LỤC
+GIỚI THIỆU        4
+1.1 Mục đích        4
+1.2 Thông tin chung        6
+1.3 Tài liệu liên quan        7
+1.4 Phạm vi test        7
+1.5 Ràng buộc        12
+1.6 Liệt kê các mạo hiểm        12
+2.CÁC YÊU CẦU CHO TEST        18
+3.CHIẾN LƯỢC TEST        20
+1.7 Các kiểu test        21
+3.1.1 Test chức năng (Functional Testing)        24
+1.7.1.1 Test chức năng (Function Testing)        25
+1.7.1.2 Test giao diện người sử dụng (User Interface Testing)        26
+1.7.1.3 Test dữ liệu và tích hợp dữ liệu (Data and Database Integrity Testing)        27
+1.7.1.4 Test chu trình nghiệp vụ (Business Cycle Testing)        28
+3.1.2 Test hiệu suất (Performance testing)        29
+1.7.1.5 Performance Profiling        29
+1.7.1.6 Load Testing        30
+1.7.1.7 Stress Testing        31
+1.7.1.8 Volume Testing        33
+3.1.3 Test Bảo mật và Kiểm soát truy cập (Security and Access Control Testing)        34
+3.1.4 Test hồi quy (Regression Testing)        35
+3.2 Giai đoạn test        36
+3.3 Các công cụ test        37
+3.4 Môi trường test        37
+4 : TÀI NGUYÊN        38
+4.1. Nhân lực        38
+3.6 Hệ thống        39
+4 CÁC MỐC KIỂM SOÁT CỦA GIAI ĐOẠN TEST (TEST MILESTONES)        41
+5 CÁC SẢN PHẨM        41
+GIỚI THIỆU
+   1. Mục đích
++ Mục đích của Phần mềm Bán Điện Thoại :  
+   ·Tinh giản các thủ tục phức tạp ,  quản lý được hồ sơ khách hàng.
+   · Hỗ trợ việc thống kê , xếp loại các dòng điện thoại và khách hàng.
+   · Tạo được một môi trường hỗ trợ gần gũi với khách hàng.  
+    ·Rút ngắn thời gian khi đặt hàng.
+    ·Giúp các cửa hàng và doanh nghiệp tối ưu hóa quy trình kinh doanh và tăng hiệu suất.
++Tài liệu này được biên soạn với những tiêu chí sau :
+·Mô tả cách thức thực hiện công việc kiểm tra phần mềm đầy đủ và tốt nhất bao gồm.
+·Đặc tả những module cần kiểm tra trong Phần mềm Bán Điện Thoại  dựa vào mục đích của phần mềm cũng như những chức năng được hiện thực trong phần mềm.
+·Phân công cụ thể từng module cần kiểm tra cho thành viên thích hợp trong nhóm cũng như lên kế hoạch từng bước cho từng cá nhân.
+·Đề ra những mức tiêu chuẩn có thể chấp nhận để kết luận kết quả kiểm tra.
+·Đây là công cụ giúp cho việc truyền thông dễ dàng giữa nhóm kiểm tra và nhóm phát triển phần mềm.
+
+
++Tài liệu bao gồm các phần sau :
+·Giới thiệu : giúp cho thành viên có cái nhìn chung nhất và bao quát nhất về kế hoạch kiểm tra phần mềm Bán Điện Thoại.
+·Các yêu cần cho test : xác định các thành phần (tình huống test, các yêu cầu chức.
+năng và phi chức năng) được xác định như mục tiêu test. Các thành phần liệt kê trong danh sách này sẽ được test.
+· Chiến lược test: Chiến lược test giới thiệu phương án tiếp cận để test các mục tiêu test.
+·  Những vấn đề chính trong chiến lược test là các kỹ thuật được áp dụng và điều kiện để biết khi nào việc test được hoàn thành.
+· Mô tả các kiểu test dùng trong dự án.
+· Liệt kê với mỗi kiểu test tương ứng test cho chức năng nào.
+· Việc test có thể dừng khi nào.
+·Tài nguyên : bao gồm toàn nguồn nhân lực và tài nguyên hệ thống phục vụ cho quá trình kiểm tra.
+· Các mốc kiểm soát của giai đoạn test: có thể độc lập với các mốc kiểm soát của dự án, cho biết chính xác thông tin về tình trạng hoàn thành của dự án.
+
+
+
+
+
+
+
+
+
+
+
+
+   2. Thông tin chung
+Mục đích của việc kiểm tra phần mềm cho Điện Thoại là để đảm bảo rằng phần mềm đó hoạt động một cách chính xác và đáp ứng các yêu cầu của người dùng. Việc kiểm tra phần mềm giúp xác định các lỗi và vấn đề về tính năng, tốc độ và độ bền, giúp phục hồi lỗi và cải thiện chất lượng phần mềm. Việc kiểm tra phần mềm còn giúp đảm bảo rằng phần mềm đáp ứng các tiêu chuẩn quốc tế về bảo mật và riêng tư.
+Phạm vi kiểm tra bao gồm các mục sau : 
+– Test chức năng ( Function Testing ) bao gồm : 
++Test chức năng (Function Testing)
++Test giao diện người sử dụng (User Interface Testing)
++Test dữ liệu và tích hợp dữ liệu (Data and Database Integrity Testing)
++Test chu trình nghiệp vụ (Business Cycle Testing)
+        – Test hiệu suất ( Performance testing ) bao gồm : 
+                +Performance Profiling
++Load Testing
++Stress Testing
++Volume Testing[a]
+– Test Bảo mật và Kiểm soát truy cập (Security and Access Control Testing)
+– Test hồi qui (Regression Testing)
+
+
+
+
+   3. Tài liệu liên quan
+STT
+	Tên tài liệu
+	Nguồn
+	Ghi chú
+	1
+	Tài liệu kiểm tra (Test Document)
+	Google
+	
+
+	2
+	Kế hoạch kiểm tra sản phẩm (Product test plan)
+	Google
+	
+
+	3
+	Kế hoạch kiểm tra hệ thống (System test plan)
+	Google
+	
+
+	4
+	Kế hoạch kiểm tra tính năng (Feature test plan) 
+	Google
+	
+
+	5
+	Kế hoạch kiểm tra tích hợp ()
+	Google
+	
+
+	6
+	Bản kế hoạch kiểm tra (Test plan outline)
+	Google
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+   4. Phạm vi test
+<Mô tả các giai đoạn test – ví dụ Unit, Integration, System.
+Các giai đoạn kiểm tra được thực hiện : (Khái quát định nghĩa từng mức độ trong các giai đoạn , thành viên cần phải nắm rõ để biết được quy trình kiểm tra phần mềm bán điện thoại sẽ được diễn ra như thế nào )
+* Unit Test – kiểm thử mức đơn vị
+* Mục đích của Unit Test là bảo đảm thông tin được xử lý và xuất (khỏi Unit) là chính xác, trong mối tương quan với dữ liệu nhập và chức năng của từng đơn vị thành phần nhỏ nhất của phần mềm
+* Kiểm tra từng đơn vị thành phần nhỏ nhất của phần mềm bán điện thoại gồm : các chức năng, các hàm, các lớp, các module, hoặc bất kỳ đơn vị nào được xác định để kiểm tra riêng biệt và đảm bảo chúng hoạt động đúng theo yêu cầu và mong đợi.
+* Một kinh nghiệm đúc kết từ thực tiễn: thời gian tốn cho Unit Test sẽ được đền bù bằng việc tiết kiệm rất nhiều thời gian và chi phí cho việc kiểm thử và sửa lỗi ở các mức kiểm thử sau đó do đó chúng ta sẽ cố gắng thực hiện Unit Test thật tốt
+* Vì Unit Test thường thường do lập trình viên thực hiện trong giai đoạn viết code và xuyên suốt chu kỳ phát triển phần mềm. Do đó, Unit Test đòi hỏi kiểm thử viên có kiến thức về thiết kế và code của chương trình
+* Unit Test cũng đòi hỏi phải chuẩn bị trước các tình huống (test case) hoặc kịch bản (script), trong đó chỉ định rõ dữ liệu vào, các bước thực hiện và dữ liệu mong chờ sẽ xuất ra. Các test case và script này nên được giữ lại để tái sử dụng
+* Integration Test – kiểm thử tích hợp
+   * Integration test kết hợp các thành phần của một ứng dụng và kiểm thử như một ứng dụng đã hoàn thành. 
+   * Integration Test có 2 mục tiêu chính:
+      * Phát hiện lỗi giao tiếp xảy ra giữa các Unit
+      * Tích hợp các Unit đơn lẻ thành các hệ thống nhỏ (subsystem) và cuối cùng là nguyên hệ thống hoàn chỉnh (system) chuẩn bị cho kiểm thử ở mức hệ thống (System Test)
+   * Integration Test chỉ nên thực hiện trên những Unit đã được kiểm tra cẩn thận trước đó bằng Unit Test, và tất cả các lỗi mức Unit đã được sửa chữa
+   * Có 4 loại kiểm thử trong Integration Test:
+      * Kiểm thử cấu trúc (Structure Test): Tương tự White Box Test 
+      * Kiểm thử chức năng (Functional Test): Tương tự Black Box Test 
+      * Kiểm thử hiệu năng (Performance Test): kiểm thử việc vận hành của hệ thống
+      * Kiểm thử khả năng chịu tải (Stress Test): kiểm thử các giới hạn của hệ thống
+* System Test - kiểm thử mức hệ thống 
+   * Mục đích System Test là kiểm thử thiết kế và toàn bộ hệ thống (sau khi tích hợp) có thỏa mãn yêu cầu đặt ra hay không
+   * System Test .bắt đầu ngay sau Integration Test,trọng tâm là đánh giá về hoạt động, thao tác, sự tin cậy và các yêu cầu khác liên quan đến chất lượng của toàn hệ thống
+   * Điểm khác nhau then chốt giữa Integration Test và System Test là System Test chú trọng các hành vi và lỗi trên toàn hệ thống, còn Integration Test chú trọng sự giao tiếp giữa các đơn thể hoặc đối tượng khi chúng làm việc cùng nhau
+   * Bản thân System Test lại gồm nhiều loại kiểm thử khác nhau ,phổ biến nhất gồm:
+      * Kiểm thử chức năng (Functional Test)
+      * Kiểm thử khả năng vận hành (Performance Test)
+      * Kiểm thử khả năng chịu tải (Stress Test hay Load Test)
+      * Kiểm thử cấu hình (Configuration Test)
+      * Kiểm thử khả năng bảo mật (Security Test)
+      * Kiểm thử khả năng phục hồi (Recovery Test)
+   * Nhìn từ quan điểm người dùng, các cấp độ kiểm thử trên rất quan trọng: bảo đảm hệ thống đủ khả năng làm việc trong môi trường thực
+   * Lưu ý không nhất thiết phải thực hiện tất cả các loại kiểm thử nêu trên. Tùy yêu cầu và đặc trưng của từng hệ thống, tuỳ khả năng và thời gian cho phép của dự án, khi lập kế hoạch, người Quản lý dự án sẽ quyết định áp dụng những loại kiểm thử nào. Chính vì thế , đối với Website Đoàn trường THPT Nguyễn Du chúng ta sẽ kiểm thử những chức năng thiết yếu nhất đối với 1 Website : chức năng, chịu tải, vận hành và bảo mật
+* Acceptance Test - kiểm thử chấp nhận sản phẩm
+Thông thường, sau giai đoạn System Test là Acceptance Test, được khách hàng thực hiện (hoặc ủy quyền cho một nhóm thứ ba thực hiện). Mục đích của Acceptance Test là để chứng minh PM thỏa mãn tất cả yêu cầu của khách hàng và khách hàng chấp nhận sản phẩm (và trả tiền thanh toán hợp đồng)
+Acceptance Test có ý nghĩa hết sức quan trọng, mặc dù trong hầu hết mọi trường hợp, các phép kiểm thử của System Test và Acceptance Test gần như tương tự, nhưng bản chất và cách thức thực hiện lại rất khác biệt
+Việc kiểm tra phần mềm bán điện thoại được thực hiện lần đầu tiên từ lúc hiện thực đến khi hoàn thành, chính vì thế Nhóm 3 sẽ test các chức năng hiện có của phần mềm này  bao gồm : 
+
+
+Độ ưu tiên
+	Mã
+	Nội dung
+	Ghi chú
+	Thành viên
+	01
+	N3-01
+	Trang chủ
+	Test GUI 
+	
+
+	02
+	N3-02
+	Trang Bán hàng 
+	Test GUI 
+	
+
+	03
+	N3-03
+	Trang Giỏ hàng
+	Test GUI 
+	
+
+	04
+	N3-04
+	Trang thanh toán
+	Test GUI 
+	
+
+	05
+	N3-05
+	Trang đăng nhập
+	Test GUI 
+	
+
+	06
+	N3-06
+	Trang đăng ký
+	Test GUI 
+	
+
+	07
+	N3-07
+	Trang quên mật khẩu
+	Test GUI 
+	
+
+	08
+	N3-08
+	Trang quản lý tài khoản
+	Test GUI 
+	
+
+	09
+	N3-09
+	Trang bảo hành đổi trả
+	Test GUI 
+	
+
+	10
+	N3-10
+	Trang chăm sóc khách hàng
+	Test GUI 
+	
+
+	12
+	N3-12
+	Bán hàng
+	Test function
+	
+
+	13
+	N3-13
+	Giỏ hàng
+	Test function
+	
+
+	14
+	N3-14
+	Quản lý đơn đặt hàng
+	Test function
+	
+
+	15
+	N3-15
+	Quản lý sản phẩm
+	Test function
+	Thành
+	16
+	N3-16
+	Quản lý khách hàng
+	Test function
+	
+
+	17
+	N3-17
+	Báo cáo và thống kê
+	Test function
+	
+
+	18
+	N3-18
+	Tìm kiếm và lọc sản phẩm
+	Test function
+	
+
+	19
+	N3-19
+	Thanh toán
+	Test function
+	
+
+	20
+	N3-20
+	Quản lý khuyến mãi
+	Test function
+	
+
+	21
+	N3-21
+	Đăng nhập,đăng ký 
+	Test function
+	
+
+	22
+	N3-22
+	Quên mật khẩu
+	Test function
+	
+
+	23
+	N3-23
+	Quản lý bảo hành
+	Test function
+	
+
+	24
+	N3-24
+	Hỗ trợ trực tuyến và góp ý
+	Test function
+	
+
+	25
+	N3-25
+	Giao diện người dùng thân thiện
+	Non test function
+	
+
+	26
+	N3-26
+	Yêu cầu về khả năng chịu tải và hiệu năng thực hiện
+	Non test function
+	
+
+	27
+	N3-27
+	Lưu trữ và quản lý dữ liệu
+	Non test function
+	
+
+	28
+	N3-28
+	Xử lý bảo mật và Quản lý quyền truy cập
+	Non test function
+	
+
+	29
+	N3-29
+	Gửi email và tin nhắn cho người dùng 
+	Non test function
+	
+
+	30
+	N3-30
+	Đa ngôn ngữ
+	 Test function
+	
+
+	
+
+   5. Ràng buộc
+
+
+Ngôn ngữ lập trình
+	Java(Swing+Jdbc)
+	Cơ sở dữ liệu
+	CSDL Microsoft SQL Server 2019
+	Ràng buộc
+	● Luôn sẵn sàng hoạt động.
+● Bàn giao sản phẩm đúng thời gian.
+● Phần mềm chạy trên nền Windows.
+	
+
+
+
+   6. Liệt kê các mạo hiểm
+<Liệt kê các mạo hiểm/rủi ro và phương án khắc phục, phòng ngừa có thể ảnh hưởng đến việc thiết kế, phát triển và thực hiện test. Khi lập tài liệu thì cần xóa dòng hướng dẫn trên đi>
+Stt
+	Mạo hiểm
+	Phương án khắc phục & phòng ngừa
+	Mức độ ảnh hưởng  (MD)
+	1
+	Thiếu tính chi tiết trong thiết kế: Có thể dẫn đến việc thiếu tính tương thích và tính nhất quán trong quá trình phát triển.
+
+
+	-Sử dụng các quy trình và công cụ hỗ trợ thiết kế chi tiết,
+-Tạo một đội ngũ thiết kế chuyên nghiệp,
+-Kiểm tra và xác nhận chi tiết trước khi triển khai,
+-Hợp tác với các bên liên quan để đảm bảo tương thích.
+
+
+	cao
+	2
+	Thiếu kiểm tra đầu vào/đầu ra: Có thể dẫn đến việc xảy ra lỗi trong quá trình thực hiện test.
+
+
+	-Sử dụng các công cụ và quy trình kiểm tra chất lượng,
+-Tạo một đội ngũ kiểm tra chuyên nghiệp,
+-Xác nhận đầu vào/đầu ra trước khi thực hiện test,
+-Tổng hợp và ghi nhận kết quả test để đảm bảo tính chính xác.
+
+
+	cao
+	3
+	Thiếu tính nhất quán trong việc định nghĩa và thiết kế test case: Có thể dẫn đến việc thiếu tính tổng quan trong việc kiểm tra chất lượng của sản phẩm.
+
+
+	-Sử dụng các quy trình và công cụ hỗ trợ định nghĩa test case,
+-Tạo một đội ngũ test chuyên nghiệp,
+-Xem xét và tổng hợp các yêu cầu và mục tiêu của sản phẩm trước khi thiết kế test case,
+-Hợp tác với các bên liên quan để đảm bảo tính nhất quán trong việc kiểm tra chất lượng.
+
+
+	cao
+	4
+	Thiếu tài nguyên để thực hiện test: Có thể giảm hiệu suất và chất lượng của quá trình test.
+
+
+	-Xác định và đánh giá nhu cầu tài nguyên trước khi bắt đầu quá trình test,
+-Sử dụng các công cụ và kỹ thuật tiên tiến để tối ưu hóa sử dụng tài nguyên,
+-Hợp tác với các bên liên quan để đảm bảo cung cấp đủ tài nguyên,
+-Tổ chức và quản lý tài nguyên một cách hiệu quả để đảm bảo hiệu suất và chất lượng của quá trình test.
+
+
+	cao
+	5
+	Thiếu tính tổng quan trong quá trình test: Có thể dẫn đến việc bỏ sót một số lỗi quan trọng.
+
+
+	-Xác định và định nghĩa rõ ràng các mục tiêu và yêu cầu của quá trình test,
+-Sử dụng một phương pháp kiểm tra tổng quan để đảm bảo tất cả các lỗi được phát hiện,
+-Tổ chức và quản lý quá trình test một cách cẩn thận để đảm bảo tính tổng quan,
+-Hợp tác với các nhân viên kiểm tra và phát triển để đảm bảo tính tổng quan trong quá trình test.
+
+
+	cao
+	6
+	Thiếu tính tương thích giữa các phần mềm: Có thể dẫn đến việc xảy ra lỗi trong quá trình test và sử dụng sản phẩm.
+
+
+	-Xác định các yêu cầu tương thích trước khi bắt đầu quá trình thiết kế và phát triển.
+-Thực hiện kiểm tra tương thích sớm trong quá trình phát triển.
+-Sử dụng các công cụ và tiêu chuẩn để đảm bảo tương thích giữa các phần mềm.
+-Đảm bảo rằng các phần mềm được phát triển theo các tiêu chuẩn và quy trình chung.
+-Thực hiện kiểm tra tương thích hàng định kỳ và cập nhật các phần mềm nếu cần.
+
+
+	cao
+	
+
+2.CÁC YÊU CẦU CHO TEST
+* Danh sách dưới đây xác định các thành phần (tình huống test, các yêu cầu chức năng và phi chức năng) được xác định như mục tiêu test. Các thành phần liệt kê trong danh sách này sẽ được test.
+
+
+Độ ưu tiên 
+	Mã
+	Nội dung 
+	Mức độ công việc 
+	Ghi chú 
+	01
+	N3-01
+	Trang chủ
+	Design ĐN 0,5 man-day, test 0,5 man-days  
+
+
+	Test GUI
+	02
+	N3-02
+	Trang sản phẩm
+	Design ĐX 0,5 man-day, test 0,5 man-days  
+	Test GUI 
+	03
+	N3-03
+	Trang Giỏ hàng
+	Design SP 0,5 man-day, test 0,5 man-days  
+	Test GUI 
+	04
+	N3-04
+	Trang thanh toán
+	Design hãng 0,5 man-day, test 0,5 man-days  
+	Test GUI
+	05
+	N3-05
+	Trang đăng nhập
+	Design K 0,5 man-day, test 0,5 man-days  
+	Test GUI
+	06
+	N3-06
+	Trang đăng ký
+	Design HD 0,5 man-day, test 0,5 man-days  
+	Test GUI
+	07
+	N3-07
+	Trang thoát
+	Design BH 0,5 man-day, test 0,5 man-days  
+	Test GUI
+	08
+	N3-08
+	Trang quản lý tài khoản
+	Design NV 0,5 man-day, test 0,5 man-days  
+	Test GUI
+	09
+	N3-09
+	Trang bảo hành/đổi trả
+	Design KH 0,5 man-day, test 0,5 man-days  
+	Test GUI
+	10
+	N3-10
+	Trang chăm sóc khách hàng
+	Design KM 0,5 man-day, test 0,5 man-days  
+	Test GUI
+	11
+	N3-11
+	Trang tìm kiếm
+	Design ĐN 1 man-day, test 1  man-days  
+
+
+	Test function 
+	12
+	N3-12
+	Quản lý sản phẩm
+	Design ĐX 1 man-day, test 1 man-days  
+	Test function
+	13
+	N3-13
+	Giỏ  hàng
+	Design SP 1 man-day, test 1 man-days  
+	Test function
+	14
+	N3-14
+	Quản lý đơn đặt hàng
+	Design hãng 1 man-day, test 1 man-days  
+	Test function
+	15
+	N3-15
+	Quản lý kho
+	Design K 1 man-day, test 1 man-days  
+	Test function
+	16
+	N3-16
+	Quản lý khách hàng
+	Design HD 1 man-day, test 1 man-days  
+	Test function
+	17
+	N3-17
+	Báo cáo và thống kê
+	Design BH 1 man-day, test 1 man-days  
+	Test function
+	18
+	N3-18
+	Tìm kiếm và lọc sản phẩm
+	Design NV 1 man-day, test 1  man-days  
+	Test function
+	19
+	N3-19
+	Thanh toán trực tuyến
+	Design KH 1 man-day, test 1 man-days  
+	Test function
+	20
+	N3-20
+	Quản lý khuyến mãi
+	Design TK 1 man-day, test 1 man-days  
+	Test function
+	21
+	N3-21
+	Hỗ trợ trực tuyến và góp ý
+	Design KM 1 man-day, test 1 man-days  
+	Test function
+	22
+	N3-22
+	Giao diện người dùng thân thiện
+	Design K 1 man-day, test 1 man-days  
+	Non test function
+	23
+	N3-23
+	Yêu cầu về khả năng chịu tải và hiệu năng thực hiện
+	Design HD 1 man-day, test 1 man-days  
+	Non test function
+	24
+	N3-24
+	Lưu trữ và quản lý dữ liệu
+	Design BH 1 man-day, test 1 man-days  
+	Non test function
+	25
+	N3-25
+	Xử lý bảo mật và Quản lý quyền truy cập
+	Design NV 1 man-day, test 1  man-days  
+	Non test function
+	26
+	N3-26
+	Gửi email và tin nhắn cho người dùng 
+	Design KH 1 man-day, test 1 man-days  
+	Non test function
+	
+
+3.CHIẾN LƯỢC TEST
+<Chiến lược test giới thiệu phương án tiếp cận để test các mục tiêu test.
+Những vấn đề chính trong chiến lược test là các kỹ thuật được áp dụng và điều kiện để biết khi nào việc test được hoàn thành.
+Mô tả các kiểu test dùng trong dự án.
+Có thể liệt kê với mỗi kiểu test tương ứng test cho chức năng nào[1].
+Việc test có thể dừng khi nào.
+Ví dụ:
+* Nó không còn hữu ích
+* Nó đòi hỏi một phạm vi nhất định
+* Nó đòi hỏi một số lỗi nhất định phải tìm được
+* Hết thời gian
+* Tester trả lại gói phần mềm cho LTV  khi chưa sửa lỗi 
+>
+   7. Các kiểu test
+<Đối với mỗi kiểu test phải giải thích kỹ thuật, điều kiện hoàn thành và các vấn đề đặc biệt liên quan.
+Kỹ thuật: Kỹ thuật phải mô tả việc test được thực hiện như thế nào, bao gồm cả những gì sẽ được test, các hoạt động chính sẽ được thực hiện trong quá trình test và các phương pháp dùng để đánh giá kết quả.
+Điều kiện hoàn thành: Điều kiện hoàn thành được phát biểu nhằm hai mục đích:
+* Xác định chất lượng sản phẩm được chấp nhận
+* Xác định thời điểm mà các nỗ lực test được thực hiện thành công
+Một điều kiện hoàn thành được phát biểu rõ ràng phải bao gồm:
+* Chức năng, hoạt động hoặc các điều kiện được tính toán
+* Phương pháp tính toán
+Điều kiện hoặc mức độ thích ứng với phép đo
+Các vấn đề đặc biệt: Phần này phải chỉ ra các ảnh hưởng hoặc phụ thuộc có thể tác động hoặc ảnh hưởng đến nguồn lực test mô tả trong chiến lược. Các ảnh hưởng có thể bao gồm: Nhân công (ví dụ sự sẵn sàng hoặc cần thiết của các nguồn lực khác test để hỗ trợ/tham gia trong test); các ràng buộc (ví dụ hạn chế về thiết bị hoặc sự sẵn sàng hoặc cần thiết/thiếu các thiết bị đặc biệt); các yêu cầu đặc biệt (ví dụ lịch test hoặc truy cập vào hệ thống)
+Một ví dụ về mô tả kiểu test:
+Kỹ thuật:
+* Functional Test 
+Đối với chu trình sự kiện của mỗi UC, sẽ xác định một tập các giao dịch đại diện cho mỗi hành động của tác nhân khi thực hiện UC.
+Tối thiểu phải có 2 TC cho mỗi giao dịch, một TC để phản ánh điều kiện tích cực và một phản ánh điều kiện tiêu cực (không được chấp nhận)
+Trong giai đoạn đầu tiện, các UC 1-4 và 12 sẽ được test, theo hình thức sau:
+UC 1 bắt đầu với tác nhân đã truy cập thành công vào ứng dụng và tại cửa sổ chính, và kết thúc khi người dùng xác định SAVE.
+Mỗi TC sẽ được tiến hành và thực hiện bằng cách sử dụng Rational Robot.
+Việc kiểm tra và đánh giá việc thực hiện mỗi TC sẽ được thực hiện theo phương pháp sau:
+Thực hiện Test script (Mỗi test script có được thực hiện thành công như mong muốn không?)
+Tình trạng Window hoặc phương pháp kiểm tra Object Data (tiến hành trong các test script) sẽ được dùng để kiểm tra sự hiển thị của các màn hình chính và dữ liệu được xác định được nắm bắt/hiển thị bởi mục tiêu test trong khi thực hiện test.
+Cơ sở dữ liệu của các mục tiêu test (sử dụng Microsoft Access) sẽ được kiểm tra trước khi test và kiểm tra lại sau khi test để kiểm chứng rằng các thay đổi thực hiện trong quá trình test đã được phản ánh chính xác trong dữ liệu.
+* Performance Test: 
+Với mỗi UC, xác định một tập các giao dịch, như định nghĩa trong tài liệu phân tích workload, sẽ được tiến hành và thực hiện bằng Rational Suite Performance Studio và Rational Robot (GUI scripts)
+Ít nhất 3 workload được phản ánh trong test script và lịch trình thực hiện test, bao gồm:
+Stressed workload: 750 người dùng (15 % quản lý, 50 % bán hàng, 35 % marketing) 
+Peak workload: 350 người dùng (10 % quản lý, 60 % bán hàng, 30 % marketing) 
+Nominal workload: 150 người dùng (2 % quản lý, 75% bán hàng, 23 % marketing) 
+Test script dùng để thực hiện mỗi giao dịch sẽ bao gồm bộ đếm thời gian tương tự để đo thời gian phản hồi, ví dụ tổng thời gian giao dịch (như định nghĩa trong tài liệu phân tích workload), và các hoạt động giao dịch chính hoặc thời gian xử lý.
+Test script sẽ thực hiện các workload trong 1 giờ (trừ phi được ghi chú khác trong tài liệu phân tích workload).
+Kiểm tra và đánh giá việc thực hiện mỗi thực hiện test (của một workload) bao gồm:
+Thực hiện test được theo dõi bằng biểu đồ trạng thái (để xác định rằng việc test và workload được thực hiện như mong muốn)
+Thực hiện test script (mỗi test script có được thực hiện thành công như mong đợi không?)
+Ghi nhận và đánh giá thời gian phản hồi đã định nghĩa bằng các báo cáo sau:
+   * Performance Percentile 
+   * Response Time 
+Điều kiện hoàn thành:
+Tất cả các TC có trong kế hoạch đều đã được thực hiện 
+Tất cả các lỗi được xác định phải được ghi nhận vào một giải pháp đã thỏa thuận (All identified defects have been addressed to an agreed upon resolution)
+Tất cả các TC có trong kế hoạch đã được thực hiện lại và toàn bộ các lỗi mở đã được ghi nhận như đã thỏa thuận và không có lỗi mới nào được phát hiện
+Hoặc
+Toàn bộ các TC đặt mức ưu tiên cao đều đã được thực hiện
+Toàn bộ các lỗi tìm thấy đều được ghi nhận vào một giải pháp đã thỏa thuận
+Toàn bộ các lỗi có trọng số 1 và 2 đều được giải quyết 
+Tất cả các TC có mức ưu tiên cao đều đã được thực hiện lại và toàn bộ các lỗi mở đã được ghi nhận như đã thỏa thuận và không có lỗi mới nào được phát hiện
+Các vấn đề đặc biệt:
+* Cơ sở dữ liệu test yêu cầu người thiết kế hoặc quản trị CSDL hỗ trợ để tạo mới, cập nhật và làm tươi dữ liệu test
+* Việc test hiệu suất hệ thống sử dụng máy chủ trong mạng hiện tại (có hỗ trợ cả các giao dịch khác không thuộc việc test). Việc test sẽ phải được lập lịch vào những giờ không còn các giao dịch khác trên mạng.
+* Mục tiêu test phải đồng nhất với hệ thống hợp lệ (hoặc giả lập đồng bộ) để việc test chức năng có thể được tiến hành và thực hiện
+* Việc test có thể bị dừng khi <số lỗi vượt quá norm, ...>
+* Cán bộ test có thể dừng test khi lập trình viên không thực hiện unit test, ...
+>
+      1. Test chức năng (Functional Testing)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         1. Test chức năng (Function Testing) 
+* Mục đích của test chức năng là tập trung vào các yêu cầu test có thể được lưu vết trực tiếp trong các UC hoặc các chức năng và quy tắc nghiệp vụ. 
+* Mục tiêu của kiểu test này là kiểm tra tính đúng đắn của các dữ liệu, quy trình và báo cáo cũng như việc thực hiện đúng những quy tắc nghiệp vụ. 
+* Kiểu test này dựa vào kỹ thuật black box, tức là kiểm tra ứng dụng và các xử lý nội tại bằng cách tương tác với ứng dụng thông qua giao diện người sử dụng và phân tích các kết quả hoặc đầu ra. 
+* Bảng sau liệt kê một số gợi ý đối với mỗi ứng dụng:
+Mục đích test:
+	<Đảm bảo mục tiêu test đúng đắn của chức năng, bao gồm định hướng, dữ liệu đầu vào, xử lý và dữ liệu nhận được>
+	Cách thực hiện:
+	<Thực hiện mỗi UC, chu trình UC hoặc chức năng, sử dụng dữ liệu hợp lệ và không hợp lệ để kiểm tra:
+-    Kết quả mong đợi với dữ liệu hợp lệ.
+-    Lỗi thích hợp hoặc thông báo hiển thị khi dữ liệu không hợp lệ.
+-    Mỗi qui tắc nghiệp vụ đều được áp dụng đúng>
+	Điều kiện hoàn thành:
+	-   <Toàn bộ kế hoạch test đã được thực hiện.
+-     Toàn bộ các lỗi phát hiện ra đã được ghi nhận.>
+	Các vấn đề đặc biệt:
+	<Xác định hoặc mô tả các vấn đề (nội bộ hoặc bên ngoài) ảnh hưởng đến việc test chức năng>
+	>
+
+
+
+
+
+
+         2. Test giao diện người sử dụng (User Interface Testing)
+<Test giao diện người dùng (UI) kiểm tra các tương tác của người dùng với phần mềm. Mục tiêu của test UI là để đảm bảo rằng giao diện người dùng cung cấp cho người sử dụng cách truy cập và sử dụng thích hợp thông qua các chức năng trong mục tiêu test. Ngoài ra, test UI còn để đảm bảo rằng các đối tượng trong phạm vi chức năng UI giống như mong đợi và phù hợp với tổ chức hoặc chuẩn ngành.>
+Mục đích test:
+	<Kiểm tra:
+   Việc sử dụng thông qua mục tiêu test phản ánh đúng các chức năng và yêu cầu nghiệp vụ, bao gồm màn hình đến màn hình, trường đến trường và sử dụng các phương pháp truy cập (phím tabs, di chuột, tổ hợp phím)
+    Các đối tượng và thuộc tính màn hình như menus, size, position, state, và tập trung vào việc tương thích với chuẩn>
+	Cách thực hiện:
+	<Tạo ra và chỉnh sửa test cho mỗi màn hình để kiểm tra việc sử dụng đúng cách và tình trạng các đối tượng cho mỗi màn hình và đối tượng của ứng dụng>
+	Điều kiện hoàn thành:
+	<Mỗi màn hình được kiểm tra thành công đúng với phiên bản kiểm tra hoặc phạm vi chấp nhận được>
+	Các vấn đề đặc biệt:
+	<Không phải toàn bộ các thuộc tính của các đối tượng đều truy cập được>
+	         3. Test dữ liệu và tích hợp dữ liệu (Data and Database Integrity Testing)
+<Cơ sở dữ liệu và xử lý cơ sở dữ liệu phải được test như một hệ thống con trong dự án. hệ thống con này phải được test không cần thông qua giao diện người dùng để giao tiếp với dữ liệu. Nghiên cứu thêm về DBMS  để xác định các công cụ và kỹ thuật có thể có giúp hỗ trợ cho việc test: 
+Mục đích test:
+	<Đảm bảo rằng các phương pháp truy cập và chức năng xử lý là đúng và không có sai lệch dữ liệu>
+	Cách thực hiện:
+	     <Thực hiện từng phương pháp truy cập và xử lý, thử từng trường hợp với dữ liệu hợp lệ và không hợp lệ hoặc các yêu cầu dữ liệu.
+    Kiểm tra cơ sở dữ liệu để đảm bảo rằng dữ liệu được lưu trữ như mong đợi, toàn bộ các sự kiện với cơ sở dữ liệu xảy ra đều đúng, hoặc xem xét các dữ liệu trả về để đảm bảo rằng đã nhận được dữ liệu đúng cho các lý do đúng>
+	Điều kiện hoàn thành:
+	<Tất cả các phương pháp truy cập và chức năng xử lý đều giống như thiết kế  và không có sai lệch dữ liệu>
+	Các vấn đề đặc biệt:
+	    <Việc test có thể đòi hỏi phải môi trường phát triển DBMS hoặc drivers để truy cập hoặc sửa dữ liệu trực tiếp trong cơ sở dữ liệu.
+    Các xử lý phải được thực hiện bằng tay.
+   Cơ sở dữ liệu có kích thước nhỏ hoặc tối thiểu (giới hạn số bản ghi) phải được dùng để làm rõ thêm các sự kiện không được phép chấp nhận>
+	>
+         4. Test chu trình nghiệp vụ (Business Cycle Testing)
+<Test chu trình nghiệp vụ phải thực hiện các hoạt động trong dự án qua thời gian. Phải xác định một chu kỳ, ví dụ một năm, và các giao dịch và hoạt động có thể xảy ra trong chu kỳ của năm đó phải được thực hiện. Việc này bao gồm cả các chu kỳ hàng ngày, hàng tuần hoặc hàng tháng và các sự kiện là  ảnh hưởng bởi ngày tháng, ví dụ như ứng dụng ngân hàng>
+ Mục đích test:
+	<Đảm bảo mục đích của test là đúng đắn và các tiến trình chạy ngầm thực hiện đúng yêu cầu về mô hình nghiệp vụ và lịch trình>
+	Cách thực hiện:
+	<Việc test sẽ giả lập vài chu trình nghiệp vụ bằng cách thực hiện các công việc sau:
+   Các test dùng cho việc test chức năng sẽ được sửa lại hoặc nâng cấp để tăng số lần mỗi chức năng được thực hiện để giả lập một số người dùng khác nhau trong chu kỳ đã định.
+    Toàn bộ các chức năng theo ngày tháng sẽ được thực hiện với dữ liệu hợp lệ và không hợp lệ hoặc chu kỳ thời gian
+   Toàn bộ các chức năng xảy ra trong lịch trình chu kỳ sẽ được thực hiện vào thời gian thích hợp
+   Việc test sẽ bao gồm cả dữ liệu hợp lệ và không hợp lệ để kiểm tra:
+           - Kết quả xảy ra khi dữ liệu hợp lệ.
+             - Lỗi tương tự hoặc cảnh báo hiển thị khi dữ liệu không hợp lệ.
+     Mỗi quy tắc nghiệp vụ đều được áp dụng.
+	Điều kiện hoàn thành:
+	   <Toàn bộ kế hoạch test đã được thực hiện.
+   Toàn bộ các lỗi phát hiện ra đều được ghi nhận>
+	Các vấn đề đặc biệt:
+	   <Ngày và các sự kiện của hệ thống có thể đòi hỏi các hoạt động hỗ trợ đặc biệt
+   Mô hình nghiệp vụ đòi hỏi xác định các yêu cầu và thủ tục test thích hợp>
+	      2. Test hiệu suất (Performance testing)
+         1. Performance Profiling
+<Performance profiling là một dạng test hiệu suất trong đó thời gian phản hồi, tỷ lệ giao dịch và các yêu cầu phụ thuộc thời gian khác được đo đạc và đánh giá. Mục đích của Performance Profiling là kiểm tra các yêu cầu về hiệu suất có đạt được hay không. Performance profiling là tiến hành và thực hiện để mô tả sơ lược và điều chỉnh các hành vi hiệu suất của mục tiêu test như một hàm của các điều kiện ví dụ workload hoặc cấu hình phần cứng.
+Chú ý: Các giao dịch dưới đây tham chiếu đến “các giao dịch nghiệp vụ logic”. Các giao dịch này được định nghĩa như xác định các UC mà tác nhân của hệ thống hy vọng được thực hiện bằng cách sử dụng mục tiêu test, như thêm mới hoặc sửa một hợp đồng>
+ Mục đích test:
+	<Kiểm tra các biểu hiện về hiệu suất cho các giao dịch hoặc chức năng nghiệp vụ đã thiết kế theo những điều kiện sau:
+    workload bình thường đã biết trước (normal anticipated workload)
+    workload xấu đã biết trước (anticipated worst case workload)>
+	Cách thực hiện:
+	    <Sử dụng các thủ tục test cho test chức năng và chu trình nghiệp vụ
+    Chỉnh sửa file dữ liệu để tăng số lượng các giao dịch hoặc scripts để tăng số tương tác xảy ra trong mỗi giao dịch
+    Scripts phải được chạy trên một máy (trường hợp tốt nhất để đánh giá người dùng đơn lẻ, giao dịch đơn lẻ) và phải lặp lại trên nhiều máy trạm (ảo hoặc thực, xem các vấn đề đặc biệt dưới đây)>
+	Điều kiện hoàn thành:
+	    <Giao dịch đơn lẻ hoặc người dùng đơn lẻ: Thực hiện thành công test script không có lỗi và trong phạm vi mong đợi hoặc thời gian phản hồi cho mỗi giao dịch>
+    <Nhiều giao dịch hoặc nhiều người dùng: Thực hiện thành công test script không có lỗi và trong thời gian chấp nhận được>
+	Các vấn đề đặc biệt:
+	<Việc test hiệu suất toàn diện bao gồm phải có một workload nền trên máy chủ.  
+Có một số phương pháp để thực hiện, bao gồm:
+   “Drive transactions” trực tiếp đến máy chủ, thường trong các form gọi SQL.
+    Tạo các người dùng ảo để giả lập nhiều máy trạm, thường là vài trăm. Sử dụng công cụ Remote Terminal Emulation để thực hiện việc load này, kỹ thuật này còn được dùng để load giao dịch trên mạng
+    Sử dụng nhiều người dùng, mỗi người chạy một test script để load lên hệ thống
+Test hiệu suất phải được thực hiện trên máy chuyên dụng hoặc thời gian chuyên dùng. Điều đó cho phép việc tính toán được đầy đủ và chính xác.
+Cơ sở dữ liệu sử dụng để test hiệu suất phải có kích thước thực tế hoặc đo bằng nhau>
+	 
+         2. Load Testing
+<Load testing là một kiểu test hiệu suất mà mục tiêu là kiểm tra workload để tính toán và đánh giá hiệu suất và khả năng của mục đích test để tiếp tục thực hiện các chức năng thích hợp với các workload khác. Mục đích của load testing là xác định và đảm bảo các chức năng hệ thống thích hợp với nhiều nhất các workload. Ngoài ra load testing còn đánh giá các tính năng hiệu suất như thời gian phản hồi, tỉ lệ giao dịch và các vấn đề liên quan đến thời gian khác.>
+<Chú ý: Các giao dịch dưới đây tham chiếu đến “các giao dịch nghiệp vụ logic”. Các giao dịch này được định nghĩa như các chức năng xác định mà người dùng cuối của hệ thống mong muốn thực hiện thông qua ứng dụng như thêm hoặc sửa các thông tin hợp đồng>
+Mục tiêu test:
+	<Kiểm tra hiệu suất về thời gian cho các giao dịch hoặc tình huống nghiệp vụ đã thiết kế với nhiều điều kiện  workload>
+	Cách thực hiện:
+	    <Sử dụng các test đã xây dựng cho test chức năng và chu trình nghiệp vụ.
+    Sửa lại file dữ liệu để tăng số lượng giao dịch hoặc test nhằm tăng thêm số lần thực hiện mỗi giao dịch>
+	Điều kiện hoàn thành:
+	<Nhiều giao dịch hoặc nhiều người dùng: Thực hiện thành công việc test không có lỗi và trong thời gian chấp nhận được>
+	Các vấn đề đặc biệt:
+	    <Load testing phải được thực hiện trên máy chuyên dụng hoặc vào những giờ chuyên biệt. Nó cho phép đo đạc đầy đủ và chính xác.
+    Cơ sở dữ liệu dùng cho load testing phải có kích thước thực tế hoặc đo bằng nhau>
+	 
+         3. Stress Testing
+<Stress testing là một kiểu test hiệu suất được thực hiện để tìm ra các lỗi trong trường hợp thiếu tài nguyên hoặc cạnh tranh về tài nguyên. Bộ nhớ hoặc dung lượng đĩa ít có thể làm xuất hiện lỗi trong mục đích test mà nó không xuất hiện dưới điều kiện bình thường. Các lỗi khác có thể là kết quả của việc cạnh tranh hoặc chia sẻ tài nguyên như khóa cơ sở dữ liệu hoặc băng thông mạng. Stress testing cũng được dùng để xác định workload tối đa mà mục đích test có thể điều khiển được.>
+<Chú ý: Tham khảo các giao dịch dưới đây tham chiếu đến các giao dịch nghiệp vụ logic>
+Mục đích test:
+	<Kiểm tra các chức năng của mục đích test là đúng đắn và không có lỗi với những điều kiện sau:
+    Có ít hoặc không có bộ nhớ phù hợp trên máy chủ (RAM và DASD)
+    Số lượng máy trạm tối đa trong thực tế hoặc giả lập kết nối vào máy chủ
+    Nhiều người dùng thực hiện cùng một giao dịch với cùng dữ liệu hoặc account
+    Độ lớn các giao dịch xấu hoặc hỗn hợp (xem phần Performance Testing ở trên).
+Chú ý: Mục đích của Stress Testing có thể được phát biểu rõ và ghi ra các điều kiện mà hệ thống có thể lỗi, không thể tiếp tục thực hiện các chức năng một cách thích hợp>
+	Cách thực hiện:
+	    <Sử dụng các test đã xây dựng để thực hiện Performance Profiling hoặc Load Testing.
+    Để test việc hạn chế tài nguyên, test phải chạy trên máy đơn lẻ và RAM và DASD trên máy chủ phải giảm đi hoặc hạn chế
+    Để thực hiện các stress tests khác phải sử dụng nhiều người dùng cùng chạy một TC hoặc bổ sung các test để thực hiện độ lớn giao dịch xấy hoặc hỗn hợp.
+	Điều kiện hoàn thành:
+	<Toàn bộ kế hoạch test được thực hiện và các hạn chế của hệ thống được xác định thỏa mãn các điều kiện tối thiểu đã đặt ra hoặc chỉ sai trong trong hợp các điều kiện không nằm trong điều kiện đã xác định>
+	Các vấn đề đặc biệt:
+	    <Việc test Stressing mạng có thể đòi hỏi những công cụ để load mạng với nhiều thông báo hoặc gói dữ liệu.
+    DASD dùng cho hệ thống phải tạm thời giảm xuống để hạn chế khả năng chỗ trống cho tăng trưởng cơ sở dữ liệu.
+    Đồng bộ hóa các máy trạm đồng thời truy cập vào cùng một bản ghi hoặc các account dữ liệu>
+	 
+         4. Volume Testing
+<Mục tiêu của Volume Testing là để kiểm tra giới hạn của độ lớn của dữ liệu có thể làm phần mềm bị sai. Volume Testing cũng xác định load lớn nhất liên tục hoặc độ lớn mà mục đích test có thể điều khiển được trong chu kỳ đã cho. Ví dụ, nếu mục đích test là xử lý một tập các bản ghi để tạo báo cáo, Volume Test có thể dùng một cơ sở dữ liệu test lớn và kiểm tra xem phần mềm có chạy bình thường và cho ra báo cáo đúng không>
+Mục đích test:
+	<Kiểm tra xem mục tiêu test có thực hiện thành công các chức năng theo những điều kiện sau không:
+    Số máy trạm lớn nhất kết nối (thực tế hoặc vật lý – có thể), hoặc giả lập, tất cả đều thực hiện cùng một chức năng nghiệp vụ trong một chu kỳ mở rộng.
+    Kích thước cơ sở dữ liệu lớn nhất có thể (thực tế hoặc đo được) và nhiều query hoặc giao dịch báo cáo được thực hiện đồng thời.>
+	Cách thực hiện:
+	    <Sử dụng các test đã xây dựng cho Performance Profiling hoặc Load Testing.
+    Có thể dùng nhiều người dùng, chạy cùng một test hoặc bổ sung các test để thực hiện trường hợp giao dịch volume hoặc hỗn hợp xấu nhất (xem Stress Testing ở trên) trong một chu kỳ mở rộng.
+    Tạo ra cơ sở dữ liệu lớn nhất (thực tế, qui đổi, hoặc lọc các dữ liệu đại diện) và nhiều người dùng chạy các query và giao dịch báo cáo đồng thời trong một chu kỳ mở rộng>
+	Điều kiện hoàn thành:
+	    <Toàn bộ kế hoạch test được thực hiện và các giới hạn của hệ thống được xác định là đạt tới hoặc xử lý mà không có lỗi>
+	Các vấn đề đặc biệt:
+	<Chu kỳ thời gian như thế nào là chấp nhận được cho điều kiện cơ sở dữ liệu lớn, như đã nói ở trê?>
+	                 
+      3. Test Bảo mật và Kiểm soát truy cập (Security and Access Control Testing)
+<Test bảo mật và kiểm soát truy cập tập trung vào hai lĩnh vực bảo mật chính:
+* Bảo mật ở mức ứng dụng, bao gồm truy cập dữ liệu và các chức năng nghiệp vụ
+* Bảo mật ở mức hệ thống, bao gồm truy cập vào hệ thống hoặc truy cập từ xa
+Bảo mật mức ứng dụng đảm bảo rằng, dựa trên bảo mật đã yêu cầu, người dùng bị hạn chế sử dụng một số chức năng hoặc tình huống sử dụng, hoặc bị hạn chế trong giới hạn dữ liệu phù hợp với họ. Ví dụ, mọi người có thể được phép nhập dữ liệu để tạo account nhưng chỉ có người quản lý có thể xóa chúng. Nếu là bảo mật ở mức dữ liệu, việc test đảm bảo rằng “người dùng nhóm 1” có thể nhìn thấy các thông tin khách hàng, bao gồm dữ liệu tài chính, tuy nhiên “người dùng nhóm 2” chỉ nhìn thấy các thông tin chung chung cho cùng một khách hàng.
+Bảo mật mức hệ thống đảm bảo rằng chỉ những người dùng được cho quyền truy cập vào hệ thống mới có khả năng truy cập vào ứng dụng và chỉ bằng các cổng thích hợp
+>
+Mục đích test:
+	         Bảo mật mức ứng dụng: Đảm bảo rằng một người dùng chỉ có thể truy cập vào những chức năng hoặc dữ liệu mà nhóm người dùng đó được phép
+         Bảo mật mức hệ thống: Đảm bảo rằng chỉ những người được phép truy cập hệ thống và ứng dụng được phép truy cập chúng
+	Cách thực hiện:
+	         Bảo mật ứng dụng: Xác định và liệt kê từng nhóm người dùng và các chức năng hoặc dữ liệu mà họ được phép truy cập
+        Tạo test case cho mỗi nhóm người dùng và kiểm tra từng quyền bằng cách tạo các giao dịch xác định cho mỗi nhóm
+        Sửa lại nhóm người dùng và chạy lại tình huống test cho cùng những người dùng. Với mỗi trường hợp, kiểm tra các chức năng thêm vào hoặc dữ liệu có đúng không hay bị từ chối.
+         Truy cập mức hệ thống: tham khảo các điều kiện đặc biệt dưới đây
+	Điều kiện hoàn thành:
+	<Với mỗi nhóm người dùng đều có các chức năng hoặc dữ liệu thích hợp, và toàn bộ các chức năng giao dịch đều như dự kiến và chạy trong các test chức năng ứng dụng trước đó> 
+	Các vấn đề đặc biệt:
+	<Truy cập vào hệ thống phải được xem xét hoặc thảo luận với quản trị hệ thống hoặc quản trị mạng, có thể không cần nếu nó là chức năng của quản trị mạng hoặc quản trị hệ thống>
+	      4. Test hồi quy (Regression Testing)
+<Test hồi quy là một hoạt động cần thiết để chỉ ra rằng việc thay đổi code không gây ra những ảnh hưởng bất lợi>
+Mục đích test:
+	Test hồi quy dùng để kiểm tra các phần được sửa chữa trong phần mềm, để đảm bảo rằng những sự thay đổi đó không gây ra lỗi trong những phần khác
+	Cách thực hiện:
+	    <Tái sử dụng các TC từ những phần test trước để test các module đã được sửa chữa>.
+   <Sử dụng công cụ Rational Robot: Tạo một số test script về chức năng. Định nghĩa lịch thực hiện tự động cho chúng>
+   <80% các TC được chọn ngẫu nhiên>
+   <Xây dựng một chương trình phân tích sơ sở hạ tầng. Chúng ta dựng một cơ sở hạ tầng có thể mở rộng được để thực hiện và đánh giá chương trình phân tích. Dựa vào kết quả phân tích chúng ta xác định phạm vi cần test hồi qui.>
+	Điều kiện hoàn thành:
+	     <Toàn bộ các TC được thực hiện và đạt yêu cầu>
+     <Toàn bộ các TC được chọn được thực hiện và đạt yêu cầu>
+	Các vấn đề đặc biệt:
+	
+
+	   1. Giai đoạn test
+<Làm rõ trạng thái của giai đoạn sẽ thực hiện test. Bảng sau liệt kê các giai đoạn mà việc test thường được thực hiện>
+Kiểu test
+	Giai đoạn test
+	Unit
+	Integration
+	System
+	Acceptance
+	<Functional Tests 
+(Function, User Interface)>
+	X
+	X
+	X
+	X
+	<Performance Tests 
+(Performance profiles of individual components)>
+	X
+	X
+	
+
+	
+
+	<Performance Tests 
+(Load, Stress, Contention)>
+	
+
+	
+
+	X
+	X
+	<Reliability 
+(Integrity, Structure)>
+	X
+	X
+	
+
+	
+
+	   2. Các công cụ test
+<Liệt kê các công cụ sẽ áp dụng cho dự án>
+Mục đích
+	Công cụ
+	Nhà cung cấp/Tự xây dựng
+	Phiên bản
+	kiểm tra tính năng của sản phẩm theo yêu cầu của người dùng.
+	QuickTest Pro (QTP)
+	HPE (Hewlett Packard Enterprise)
+	UFT 14.03,
+UFT 15.0.
+	kiểm tra giao diện người dùng của phần mềm và xác nhận rằng nó hoạt động một cách đúng mực.
+	TestComplete
+	SmartBear Software
+	14
+	đánh giá tốc độ, độ bền và sức chứa của phần mềm.
+	LoadRunner
+	Micro Focus
+	12.63.
+	   3. Môi trường test
+   4. <Chỉ rõ môi trường sẽ xây dựng để thực hiện test qua các giai đoạn Unit test, Integration test, System test, Acceptance test…. Với mỗi giai đoạn, hãy xác định các yếu tố để xây dựng môi trường test như thế nào, sử dụng như môi trường mà chương trình sẽ chạy thật hay tạo môi trường giả lập gần giống với môi trường chạy thật của chương trình. Các yếu tố về môi trường như:
+- Khi test chạy chương trình bằng bản dịch hay chạy trên code. Thông thường, các giai đoạn System test, Acceptance test phải chạy trên bản dịch.
+- Các database sẽ sử dụng độc lập hay dùng chung với database phát triển. Thông thường, từ Integration test, nhóm test phải thiết lập database riêng và thiết lập các thông số cho database gần giống hoặc giống hệt như khi chương trình sẽ chạy thật.
+- Điều kiện về mạng: sẽ sử dụng mạng LAN hay Dial up… Thông thường, khi Unit test, có thể sử dụng mạng LAN nhưng khi System test trở đi thì nên sử dụng hệ thống đường truyền giống như hoặc gần giống như môi trường chạy thật.
+- Mô hình sẽ cài đặt chương trình test: số lượng máy chủ, máy trạm; việc chia tách các server, các máy trạm, việc cài đặt các domain … Thông thường, trong Unit test có thể sử dụng viếc thiết lập như khi lập trình, nhưng khi System test trở đi, phải chú ý thiết lập sao cho gần giống mô hình sẽ chạy trong thực tế nhất >.
+
+
+
+
+4 : TÀI NGUYÊN        
+4.1. Nhân lực
+
+
+Nguồn nhân lực
+	Vài trò
+	Họ và tên
+	Trách nhiệm
+	Test Manager
+	Vũ Đình Minh
+	* Xây dựng kế hoạch kiểm thử
+* Quản lý nhóm kiểm thử
+* Đảm bảo chất lượng kiểm thử 
+* Tư vấn về việc kiểm thử 
+	Test Analyst
+	Hoàng Công Đức
+	* Thực hiện kiểm thử
+* Phân tích yêu cầu 
+* Tạo báo cáo lỗi
+* Hỗ trợ trong việc sửa lỗi
+* Tư vấn về việc kiểm thử
+	Test Designer
+	Nguyễn Thanh Hương
+	* Phân tích yêu cầu
+* Tạo kế hoạch kiểm thử
+* Xác định các trường hợp kiểm thử
+* Tạo các tài liệu kiểm thử
+* 	Tester
+	Vũ Đình Minh
+
+
+Hoàng Công Đức
+
+
+Nguyễn Thanh Hương
+
+
+Lâm Vắn Tuấn
+
+
+Phan Quốc Huy
+
+
+Nguyễn Tiến Dũng
+	* Thực hiện kiểm thử
+* Báo cáo lỗi
+* Kiểm tra lỗi
+* Tài liệu kiểm thử
+* Hỗ trợ cho nhóm phát triển
+	Test System Administrator
+	Phan Quốc Huy
+	* Cấu hình hệ thống kiểm thử
+* Quản lý tài nguyên
+* Hỗ trợ cho kiểm thử
+* Bảo mật dữ liệu
+* Cập nhập phần mềm
+	
+
+   5. Hệ thống
+4.2.1 Hệ thống phần cứng cần thiết 
+
+
+Tài nguyên hệ thống
+	Resource
+	Quantity
+	Name and Type
+	Database Server
+	1
+	Database Server – SQL Server
+	CPU
+	1
+	 i5-11400 6 Core Rocket Lake
+	RAM
+	2
+	4 G 
+	HardWare
+	1
+	250GB
+	—Network or Subnet
+	1 
+	Ip Public
+	—Server Name
+	
+
+	TBD
+	—Database Name
+	1
+	BanDienThoai_Data  -SQL Server
+	Client Test PCs
+	4
+	
+
+	CPU
+	1
+	 i5-11400 6 Core Rocket Lake
+	RAM
+	2
+	4 G
+	HardWare
+	1
+	250GB
+	—Include special configuration requirements
+	
+
+	TBD
+	Test Repository
+	1
+	Test_Data – Bugzilla
+	—Network or Subnet
+	1
+	
+
+	—Server Name
+	1
+	
+
+	Test Development PCs
+	4
+	
+
+	CPU
+	1
+	 i5-11400 6 Core Rocket Lake
+	RAM
+	4
+	4 G
+	HardWare
+	1
+	250GB
+	4.2.2 Hệ thống phần mềm cần thiết : 
+
+
+Tên phần mềm
+	Version
+	Type and Other Notes
+	Window 10 Pro
+	v22.1
+	Hệ điều hành
+	Windows 11
+	22h2
+	Hệ điều hành
+	Internet Explorer
+	7.0 , 8.0
+	Trình duyệt Web
+	Google Chrome
+	3.5,3.6
+	Trình duyệt Web
+	Bkav Pro 2023
+	9.0
+	Bảo vệ hệ thống và chống Virus
+	
+
+3. CÁC MỐC KIỂM SOÁT CỦA GIAI ĐOẠN TEST (TEST MILESTONES)
+Test v1.0 phải phối hợp các hoạt động test cho nguồn lực test được xác định trong phần trước. Độc lập với milestone của dự án, phải xác định để thông tin về tình trạng hoàn thành của dự án
+Milestone Task
+	Nguồn lực
+	Ngày bắt đầu
+	Ngày kết thúc
+	Lập kế hoạch test
+	Vũ Đình Minh
+	23/01/2023
+	30/1/2023
+	Tets : Quản lý sản phẩm
+	Phan Quốc Huy
+	23/01/2023
+	30/1/2023
+	Tets : Quản lý bảo hành
+	Phan Quốc huy
+	23/01/2023
+	30/1/2023
+	Test : Đăng nhập
+	Nguyễn Tiến Dũng
+	23/01/2023
+	30/1/2023
+	Test: Quản lý khách hàng
+	Nguyễn Thanh Hương
+	23/01/2023
+	30/1/2023
+	Test : Hỗ trợ góp ý
+	Nguyễn Thanh Hương
+	23/01/2023
+	30/1/2023
+	Tets: Quản lý Đơn hàng
+	Hoàng Công Đức
+	23/01/2023
+	30/1/2023
+	Test : Quản lý khuyến mại
+	Hoàng Công Đức
+	23/01/2023
+	30/1/2023
+	Test : Bán hàng
+	Vũ Đình Minh
+	23/01/2023
+	30/1/2023
+	Test : trang chủ
+	Vũ Đình Minh
+	23/01/2023
+	30/1/2023
+	Test : Thống kê 
+	Lâm Văn tuấn
+	19/01/2023
+	30/1/2023
+	4. CÁC SẢN PHẨM
+STT
+	Sản phẩm
+	Ngày bàn giao
+	Người bàn giao
+	Người nhận bàn giao
+	1
+	<Test cases>
+	02/2023
+	Hoàng Công Đức
+Phan Quốc Huy
+Nguyễn Tiến Dũng
+	Vũ Đình Minh
+	2
+	<Test procedures>
+	02/2023
+	Lâm Văn Tuấn
+	Vũ Đình Minh
+	3
+	<Defect log>
+	02/2023
+	Nguyễn Thanh Hương
+	Vũ Đình Minh
+	4
+	<Defect reports>
+	02/2023
+	Vũ Đình Minh
+	Vũ Đình Minh
+	5
+	<Test Plan>
+	02/2023
+	Vũ Đình Minh
+	Vũ Đình Minh
+	
+
+
+
+
+
+________________
+[1] Chỉ dành cho tester FIS-HCM  khi lập tài liệu kế hoạch test
+[a]Tìm hiểu lý thuyết

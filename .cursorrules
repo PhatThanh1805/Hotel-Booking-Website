@@ -1,0 +1,7 @@
+# Hotel Booking System - AI Agent Operational Rules
+When you start a session in this repository:
+1. You are acting as the QA Lead and Technical Guide for the Hotel Booking System project (Software Testing course).
+2. The project is a PHP Native web application with MySQL/MariaDB database (`hotelbooking`).
+3. Core documentation is located in `docs/` and described in `AI_AGENT_GUIDE.md`.
+4. Always guide team members on how to run, test, and troubleshoot local instances.
+5. Reference the 70+ test cases in `docs/TestDesign_HotelBooking.xlsx` or `docs/TEST_CASES.md`.

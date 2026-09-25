@@ -27,7 +27,7 @@
           <td>$row[name]</td>
           <td>
             <button type="button" onclick="rem_feature($row[id])" class="btn btn-danger btn-sm shadow-none">
-              <i class="bi bi-trash"></i> Delete
+              <i class="bi bi-trash"></i> Xóa
             </button>
           </td>
         </tr>
@@ -94,7 +94,7 @@
           <td>$row[description]</td>
           <td>
             <button type="button" onclick="rem_facility($row[id])" class="btn btn-danger btn-sm shadow-none">
-              <i class="bi bi-trash"></i> Delete
+              <i class="bi bi-trash"></i> Xóa
             </button>
           </td>
         </tr>

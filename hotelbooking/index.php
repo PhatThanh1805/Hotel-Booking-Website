@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link  rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
   <?php require('inc/links.php'); ?>
-  <title><?php echo $settings_r['site_title'] ?> - HOME</title>
+  <title><?php echo $settings_r['site_title'] ?> - TRANG CHỦ</title>
   <style>
     .availability-form{
       margin-top: -50px;
@@ -26,10 +26,9 @@
 
   <?php require('inc/header.php'); ?>
 
-  <!-- Carousel -->
-
+  <!-- Carousel Banner -->
   <div class="container-fluid px-lg-4 mt-4">
-    <div class="swiper swiper-container">
+    <div class="swiper swiper-container rounded-4 shadow">
       <div class="swiper-wrapper">
         <?php 
           $res = selectAll('carousel');
@@ -38,7 +37,7 @@
             $path = CAROUSEL_IMG_PATH;
             echo <<<data
               <div class="swiper-slide">
-                <img src="$path$row[image]" class="w-100 d-block">
+                <img src="$path$row[image]" class="w-100 d-block rounded-4" style="height: 480px; object-fit: cover;">
               </div>
             data;
           }
@@ -47,49 +46,52 @@
     </div>
   </div>
 
-  <!-- check availability form -->
-
+  <!-- Form Kiểm tra phòng trống -->
   <div class="container availability-form">
     <div class="row">
-      <div class="col-lg-12 bg-white shadow p-4 rounded">
-        <h5 class="mb-4">Check Booking Availability</h5>
+      <div class="col-lg-12 bg-white shadow-lg p-4 rounded-4 border-0">
+        <h5 class="mb-4 fw-bold text-dark d-flex align-items-center">
+          <i class="bi bi-calendar-check text-teal fs-3 me-2"></i> Kiểm Tra & Đặt Phòng Trực Tuyến
+        </h5>
         <form action="rooms.php">
           <div class="row align-items-end">
             <div class="col-lg-3 mb-3">
-              <label class="form-label" style="font-weight: 500;">Check-in</label>
-              <input type="date" class="form-control shadow-none" name="checkin" required>
+              <label class="form-label fw-semibold">Ngày nhận phòng</label>
+              <input type="date" class="form-control shadow-none py-2 rounded-3" name="checkin" required>
             </div>
             <div class="col-lg-3 mb-3">
-              <label class="form-label" style="font-weight: 500;">Check-out</label>
-              <input type="date" class="form-control shadow-none" name="checkout" required>
+              <label class="form-label fw-semibold">Ngày trả phòng</label>
+              <input type="date" class="form-control shadow-none py-2 rounded-3" name="checkout" required>
             </div>
-            <div class="col-lg-3 mb-3">
-              <label class="form-label" style="font-weight: 500;">Adult</label>
-              <select class="form-select shadow-none" name="adult">
+            <div class="col-lg-2 mb-3">
+              <label class="form-label fw-semibold">Người lớn</label>
+              <select class="form-select shadow-none py-2 rounded-3" name="adult">
                 <?php 
                   $guests_q = mysqli_query($con,"SELECT MAX(adult) AS `max_adult`, MAX(children) AS `max_children` 
                     FROM `rooms` WHERE `status`='1' AND `removed`='0'");  
                   $guests_res = mysqli_fetch_assoc($guests_q);
                   
                   for($i=1; $i<=$guests_res['max_adult']; $i++){
-                    echo"<option value='$i'>$i</option>";
+                    echo"<option value='$i'>$i Người lớn</option>";
                   }
                 ?>
               </select>
             </div>
             <div class="col-lg-2 mb-3">
-              <label class="form-label" style="font-weight: 500;">Children</label>
-              <select class="form-select shadow-none" name="children">
+              <label class="form-label fw-semibold">Trẻ em</label>
+              <select class="form-select shadow-none py-2 rounded-3" name="children">
                 <?php 
-                  for($i=1; $i<=$guests_res['max_children']; $i++){
-                    echo"<option value='$i'>$i</option>";
+                  for($i=0; $i<=$guests_res['max_children']; $i++){
+                    echo"<option value='$i'>$i Trẻ em</option>";
                   }
                 ?>
               </select>
             </div>
             <input type="hidden" name="check_availability">
-            <div class="col-lg-1 mb-lg-3 mt-2">
-              <button type="submit" class="btn text-white shadow-none custom-bg">Submit</button>
+            <div class="col-lg-2 mb-lg-3 mt-2">
+              <button type="submit" class="btn text-white custom-bg shadow-none w-100 py-2 rounded-3 fw-bold">
+                <i class="bi bi-search me-1"></i> TÌM PHÒNG
+              </button>
             </div>
           </div>
         </form>
@@ -97,9 +99,9 @@
     </div>
   </div>
 
-  <!-- Our Rooms -->
-
-  <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR ROOMS</h2>
+  <!-- Danh Sách Phòng Nổi Bật -->
+  <h2 class="mt-5 pt-4 mb-2 text-center fw-bold h-font text-dark">PHÒNG NGHỈ NỔI BẬT</h2>
+  <div class="h-line mb-5"></div>
 
   <div class="container">
     <div class="row">
@@ -110,34 +112,31 @@
 
         while($room_data = mysqli_fetch_assoc($room_res))
         {
-          // get features of room
-
+          // Đặc điểm phòng
           $fea_q = mysqli_query($con,"SELECT f.name FROM `features` f 
             INNER JOIN `room_features` rfea ON f.id = rfea.features_id 
             WHERE rfea.room_id = '$room_data[id]'");
 
           $features_data = "";
           while($fea_row = mysqli_fetch_assoc($fea_q)){
-            $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+            $features_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1 border'>
               $fea_row[name]
             </span>";
           }
 
-          // get facilities of room
-
+          // Tiện ích phòng
           $fac_q = mysqli_query($con,"SELECT f.name FROM `facilities` f 
             INNER JOIN `room_facilities` rfac ON f.id = rfac.facilities_id 
             WHERE rfac.room_id = '$room_data[id]'");
 
           $facilities_data = "";
           while($fac_row = mysqli_fetch_assoc($fac_q)){
-            $facilities_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+            $facilities_data .="<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1 border'>
               $fac_row[name]
             </span>";
           }
 
-          // get thumbnail of image
-
+          // Ảnh đại diện phòng
           $room_thumb = ROOMS_IMG_PATH."thumbnail.jpg";
           $thumb_q = mysqli_query($con,"SELECT * FROM `room_images` 
             WHERE `room_id`='$room_data[id]' 
@@ -156,7 +155,7 @@
               $login=1;
             }
 
-            $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm text-white custom-bg shadow-none'>Book Now</button>";
+            $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm text-white custom-bg shadow-none rounded-pill px-3 fw-semibold'><i class='bi bi-cart-check me-1'></i>Đặt ngay</button>";
           }
 
           $rating_q = "SELECT AVG(rating) AS `avg_rating` FROM `rating_review`
@@ -169,9 +168,9 @@
 
           if($rating_fetch['avg_rating']!=NULL)
           {
-            $rating_data = "<div class='rating mb-4'>
-              <h6 class='mb-1'>Rating</h6>
-              <span class='badge rounded-pill bg-light'>
+            $rating_data = "<div class='rating mb-3'>
+              <h6 class='mb-1 fw-bold text-secondary' style='font-size: 13px;'>Đánh giá:</h6>
+              <span class='badge rounded-pill bg-light border p-2'>
             ";
 
             for($i=0; $i<$rating_fetch['avg_rating']; $i++){
@@ -183,36 +182,39 @@
             ";
           }
 
-          // print room card
+          $price_formatted = number_format($room_data['price'] * 1000, 0, ',', '.');
 
+          // Đổ card phòng
           echo <<<data
             <div class="col-lg-4 col-md-6 my-3">
-              <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
-                <img src="$room_thumb" class="card-img-top">
-                <div class="card-body">
-                  <h5>$room_data[name]</h5>
-                  <h6 class="mb-4">₹$room_data[price] per night</h6>
-                  <div class="features mb-4">
-                    <h6 class="mb-1">Features</h6>
-                    $features_data
+              <div class="card border-0 shadow-lg rounded-4 overflow-hidden pop h-100">
+                <img src="$room_thumb" class="card-img-top" style="height: 220px; object-fit: cover;">
+                <div class="card-body d-flex flex-column justify-content-between p-4">
+                  <div>
+                    <h5 class="fw-bold mb-2 text-dark">$room_data[name]</h5>
+                    <h6 class="mb-3 text-teal fw-bold fs-5">$price_formatted VNĐ <span class="fs-6 text-muted fw-normal">/ đêm</span></h6>
+                    <div class="features mb-3">
+                      <h6 class="mb-1 fw-bold text-secondary" style="font-size: 13px;">Đặc điểm nổi bật:</h6>
+                      $features_data
+                    </div>
+                    <div class="facilities mb-3">
+                      <h6 class="mb-1 fw-bold text-secondary" style="font-size: 13px;">Tiện ích đi kèm:</h6>
+                      $facilities_data
+                    </div>
+                    <div class="guests mb-3">
+                      <h6 class="mb-1 fw-bold text-secondary" style="font-size: 13px;">Sức chứa tối đa:</h6>
+                      <span class="badge rounded-pill bg-light text-dark text-wrap border me-1">
+                        <i class="bi bi-person me-1"></i>$room_data[adult] Người lớn
+                      </span>
+                      <span class="badge rounded-pill bg-light text-dark text-wrap border">
+                        <i class="bi bi-emoji-smile me-1"></i>$room_data[children] Trẻ em
+                      </span>
+                    </div>
+                    $rating_data
                   </div>
-                  <div class="facilities mb-4">
-                    <h6 class="mb-1">Facilities</h6>
-                    $facilities_data
-                  </div>
-                  <div class="guests mb-4">
-                    <h6 class="mb-1">Guests</h6>
-                    <span class="badge rounded-pill bg-light text-dark text-wrap">
-                      $room_data[adult] Adults
-                    </span>
-                    <span class="badge rounded-pill bg-light text-dark text-wrap">
-                      $room_data[children] Children
-                    </span>
-                  </div>
-                  $rating_data
-                  <div class="d-flex justify-content-evenly mb-2">
+                  <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
                     $book_btn
-                    <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">More details</a>
+                    <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none rounded-pill px-3"><i class="bi bi-eye me-1"></i>Chi tiết</a>
                   </div>
                 </div>
               </div>
@@ -224,14 +226,16 @@
       ?>
 
       <div class="col-lg-12 text-center mt-5">
-        <a href="rooms.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms >>></a>
+        <a href="rooms.php" class="btn btn-md btn-outline-dark rounded-pill fw-bold shadow-none px-4 py-2">
+          Xem Tất Cả Phòng nghỉ <i class="bi bi-arrow-right me-1"></i>
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- Our Facilities -->
-
-  <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR FACILITIES</h2>
+  <!-- Tiện ích dịch vụ -->
+  <h2 class="mt-5 pt-4 mb-2 text-center fw-bold h-font text-dark">TIỆN ÍCH DỊCH VỤ</h2>
+  <div class="h-line mb-5"></div>
 
   <div class="container">
     <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
@@ -241,25 +245,27 @@
 
         while($row = mysqli_fetch_assoc($res)){
           echo<<<data
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-              <img src="$path$row[icon]" width="60px">
-              <h5 class="mt-3">$row[name]</h5>
+            <div class="col-lg-2 col-md-4 text-center bg-white rounded-4 shadow-sm p-4 my-3 pop border-0">
+              <img src="$path$row[icon]" width="60px" class="mb-3">
+              <h6 class="mt-2 fw-bold text-dark">$row[name]</h6>
             </div>
           data;
         }
       ?>
 
-      <div class="col-lg-12 text-center mt-5">
-        <a href="facilities.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Facilities >>></a>
+      <div class="col-lg-12 text-center mt-4">
+        <a href="facilities.php" class="btn btn-md btn-outline-dark rounded-pill fw-bold shadow-none px-4 py-2">
+          Khám Phá Tất Cả Tiện Ích <i class="bi bi-arrow-right me-1"></i>
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- Testimonials -->
+  <!-- Đánh giá từ khách hàng -->
+  <h2 class="mt-5 pt-4 mb-2 text-center fw-bold h-font text-dark">ĐÁNH GIÁ TỪ KHÁCH HÀNG</h2>
+  <div class="h-line mb-5"></div>
 
-  <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">TESTIMONIALS</h2>
-
-  <div class="container mt-5">
+  <div class="container">
     <div class="swiper swiper-testimonials">
       <div class="swiper-wrapper mb-5">
         <?php
@@ -273,7 +279,7 @@
           $img_path = USERS_IMG_PATH;
 
           if(mysqli_num_rows($review_res)==0){
-            echo 'No reviews yet!';
+            echo '<div class="text-center w-100 text-muted fs-5">Chưa có đánh giá nào từ khách hàng!</div>';
           }
           else
           {
@@ -285,13 +291,16 @@
               }
 
               echo<<<slides
-                <div class="swiper-slide bg-white p-4">
+                <div class="swiper-slide bg-white p-4 rounded-4 shadow-sm border-0">
                   <div class="profile d-flex align-items-center mb-3">
-                    <img src="$img_path$row[profile]" class="rounded-circle" loading="lazy" width="30px">
-                    <h6 class="m-0 ms-2">$row[uname]</h6>
+                    <img src="$img_path$row[profile]" class="rounded-circle border" loading="lazy" width="40px" height="40px" style="object-fit:cover;">
+                    <div class="ms-3">
+                      <h6 class="m-0 fw-bold">$row[uname]</h6>
+                      <small class="text-muted">$row[rname]</small>
+                    </div>
                   </div>
-                  <p>
-                    $row[review]
+                  <p class="text-secondary lh-base" style="font-size: 14px;">
+                    "$row[review]"
                   </p>
                   <div class="rating">
                     $stars
@@ -305,62 +314,62 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-    <div class="col-lg-12 text-center mt-5">
-      <a href="about.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Know More >>></a>
+    <div class="col-lg-12 text-center mt-3">
+      <a href="about.php" class="btn btn-md btn-outline-dark rounded-pill fw-bold shadow-none px-4 py-2">
+        Tìm Hiểu Thêm Về Chúng Tôi <i class="bi bi-arrow-right me-1"></i>
+      </a>
     </div>
   </div>
 
-  <!-- Reach us -->
+  <!-- Liên hệ với chúng tôi -->
+  <h2 class="mt-5 pt-4 mb-2 text-center fw-bold h-font text-dark">LIÊN HỆ VỚI CHÚNG TÔI</h2>
+  <div class="h-line mb-5"></div>
 
-  <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">REACH US</h2>
-
-  <div class="container">
+  <div class="container mb-5">
     <div class="row">
-      <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-        <iframe class="w-100 rounded" height="320px" src="<?php echo $contact_r['iframe'] ?>" loading="lazy"></iframe>
+      <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded-4 shadow-sm">
+        <iframe class="w-100 rounded-3" height="340px" src="<?php echo $contact_r['iframe'] ?>" loading="lazy"></iframe>
       </div>
       <div class="col-lg-4 col-md-4">
-        <div class="bg-white p-4 rounded mb-4">
-          <h5>Call us</h5>
-          <a href="tel: +<?php echo $contact_r['pn1'] ?>" class="d-inline-block mb-2 text-decoration-none text-dark">
-            <i class="bi bi-telephone-fill"></i> +<?php echo $contact_r['pn1'] ?>
+        <div class="bg-white p-4 rounded-4 shadow-sm mb-4">
+          <h5 class="fw-bold mb-3"><i class="bi bi-telephone-inbound text-teal me-2"></i>Hotline Hỗ Trợ</h5>
+          <a href="tel: +<?php echo $contact_r['pn1'] ?>" class="d-inline-block mb-2 text-decoration-none text-dark fw-medium">
+            <i class="bi bi-telephone-fill me-1 text-teal"></i> +<?php echo $contact_r['pn1'] ?>
           </a>
           <br>
           <?php 
             if($contact_r['pn2']!=''){
               echo<<<data
-                <a href="tel: +$contact_r[pn2]" class="d-inline-block text-decoration-none text-dark">
-                  <i class="bi bi-telephone-fill"></i> +$contact_r[pn2]
+                <a href="tel: +$contact_r[pn2]" class="d-inline-block text-decoration-none text-dark fw-medium">
+                  <i class="bi bi-telephone-fill me-1 text-teal"></i> +$contact_r[pn2]
                 </a>
               data;
             }
           
           ?>
         </div>
-        <div class="bg-white p-4 rounded mb-4">
-          <h5>Follow us</h5>
+        <div class="bg-white p-4 rounded-4 shadow-sm">
+          <h5 class="fw-bold mb-3"><i class="bi bi-share text-teal me-2"></i>Kênh Mạng Xã Hội</h5>
           <?php 
             if($contact_r['tw']!=''){
               echo<<<data
-                <a href="$contact_r[tw]" class="d-inline-block mb-3">
-                  <span class="badge bg-light text-dark fs-6 p-2"> 
-                  <i class="bi bi-twitter me-1"></i> Twitter
+                <a href="$contact_r[tw]" class="d-inline-block mb-2 me-2">
+                  <span class="badge bg-light text-dark fs-6 p-2 rounded-3 border"> 
+                  <i class="bi bi-twitter me-1 text-info"></i> Twitter
                   </span>
                 </a>
-                <br>
               data;
             }
           ?>
 
-          <a href="<?php echo $contact_r['fb'] ?>" class="d-inline-block mb-3">
-            <span class="badge bg-light text-dark fs-6 p-2"> 
-            <i class="bi bi-facebook me-1"></i> Facebook
+          <a href="<?php echo $contact_r['fb'] ?>" class="d-inline-block mb-2 me-2">
+            <span class="badge bg-light text-dark fs-6 p-2 rounded-3 border"> 
+            <i class="bi bi-facebook me-1 text-primary"></i> Facebook
             </span>
           </a>
-          <br>
-          <a href="<?php echo $contact_r['insta'] ?>" class="d-inline-block">
-            <span class="badge bg-light text-dark fs-6 p-2"> 
-            <i class="bi bi-instagram me-1"></i> Instagram
+          <a href="<?php echo $contact_r['insta'] ?>" class="d-inline-block mb-2">
+            <span class="badge bg-light text-dark fs-6 p-2 rounded-3 border"> 
+            <i class="bi bi-instagram me-1 text-danger"></i> Instagram
             </span>
           </a>
         </div>
@@ -368,27 +377,33 @@
     </div>
   </div>
 
-  <!-- Password reset modal and code -->
-
+  <!-- Modal đặt lại mật khẩu -->
   <div class="modal fade" id="recoveryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg rounded-4">
         <form id="recovery-form">
-          <div class="modal-header">
-            <h5 class="modal-title d-flex align-items-center">
-              <i class="bi bi-shield-lock fs-3 me-2"></i> Set up New Password
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title d-flex align-items-center fw-bold text-dark">
+              <i class="bi bi-shield-lock fs-2 me-2 text-teal"></i> Thiết Lập Mật Khẩu Mới
             </h5>
           </div>
-          <div class="modal-body">
+          <div class="modal-body p-4">
             <div class="mb-4">
-              <label class="form-label">New Password</label>
-              <input type="password" name="pass" required class="form-control shadow-none">
+              <label class="form-label fw-semibold">Mật khẩu mới</label>
+              <div class="input-group">
+                <input id="rec_pass_input" type="password" name="pass" required class="form-control shadow-none py-2 rounded-start-3" placeholder="Nhập mật khẩu mới...">
+                <button class="btn btn-outline-secondary border shadow-none rounded-end-3" type="button" onclick="togglePasswordVisibility('rec_pass_input', this)">
+                  <i class="bi bi-eye-slash"></i>
+                </button>
+              </div>
               <input type="hidden" name="email">
               <input type="hidden" name="token">
             </div>
             <div class="mb-2 text-end">
-              <button type="button" class="btn shadow-none me-2" data-bs-dismiss="modal">CANCEL</button>
-              <button type="submit" class="btn btn-dark shadow-none">SUBMIT</button>
+              <button type="button" class="btn btn-light shadow-none me-2 rounded-3 px-3 py-2" data-bs-dismiss="modal">HỦY BỎ</button>
+              <button type="submit" class="btn btn-dark custom-bg text-white shadow-none rounded-3 px-4 py-2 fw-semibold">
+                <i class="bi bi-check-circle me-1"></i> XÁC NHẬN
+              </button>
             </div>
           </div>
         </form>
@@ -425,7 +440,7 @@
         showModal;
       }
       else{
-        alert("error","Invalid or Expired Link !");
+        alert("error","Đường dẫn khôi phục không hợp lệ hoặc đã hết hạn!");
       }
 
     }
@@ -477,40 +492,40 @@
         },
       }
     });
-
-    // recover account
     
     let recovery_form = document.getElementById('recovery-form');
 
-    recovery_form.addEventListener('submit', (e)=>{
-      e.preventDefault();
+    if(recovery_form) {
+      recovery_form.addEventListener('submit', (e)=>{
+        e.preventDefault();
 
-      let data = new FormData();
+        let data = new FormData();
 
-      data.append('email',recovery_form.elements['email'].value);
-      data.append('token',recovery_form.elements['token'].value);
-      data.append('pass',recovery_form.elements['pass'].value);
-      data.append('recover_user','');
+        data.append('email',recovery_form.elements['email'].value);
+        data.append('token',recovery_form.elements['token'].value);
+        data.append('pass',recovery_form.elements['pass'].value);
+        data.append('recover_user','');
 
-      var myModal = document.getElementById('recoveryModal');
-      var modal = bootstrap.Modal.getInstance(myModal);
-      modal.hide();
+        var myModal = document.getElementById('recoveryModal');
+        var modal = bootstrap.Modal.getInstance(myModal);
+        if(modal) modal.hide();
 
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST","ajax/login_register.php",true);
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","ajax/login_register.php",true);
 
-      xhr.onload = function(){
-        if(this.responseText == 'failed'){
-          alert('error',"Account reset failed!");
+        xhr.onload = function(){
+          if(this.responseText == 'failed'){
+            alert('error',"Đặt lại mật khẩu thất bại!");
+          }
+          else{
+            alert('success',"Đặt lại mật khẩu thành công!");
+            recovery_form.reset();
+          }
         }
-        else{
-          alert('success',"Account Reset Successful !");
-          recovery_form.reset();
-        }
-      }
 
-      xhr.send(data);
-    });
+        xhr.send(data);
+      });
+    }
 
   </script>
 

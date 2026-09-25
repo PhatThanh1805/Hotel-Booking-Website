@@ -11,7 +11,6 @@ function get_users()
   xhr.send('get_users');
 }
 
-
 function toggle_status(id,val)
 {
   let xhr = new XMLHttpRequest();
@@ -20,20 +19,43 @@ function toggle_status(id,val)
 
   xhr.onload = function(){
     if(this.responseText==1){
-      alert('success','Status toggled!');
+      alert('success','Thay đổi trạng thái tài khoản thành công!');
       get_users();
     }
     else{
-      alert('success','Server Down!');
+      alert('error','Lỗi máy chủ! Không thể cập nhật trạng thái.');
     }
   }
 
   xhr.send('toggle_status='+id+'&value='+val);
 }
 
+function toggle_role(id, role_val)
+{
+  let role_title = (role_val === 'staff') ? 'Nhân viên' : 'Khách hàng';
+  if(confirm("Bạn có chắc chắn muốn thay đổi vai trò tài khoản này thành " + role_title + " không?"))
+  {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","ajax/users.php",true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onload = function(){
+      if(this.responseText==1){
+        alert('success','Đã cập nhật vai trò tài khoản thành: ' + role_title);
+        get_users();
+      }
+      else{
+        alert('error','Cập nhật vai trò thất bại!');
+      }
+    }
+
+    xhr.send('toggle_role='+id+'&role_val='+role_val);
+  }
+}
+
 function remove_user(user_id)
 {
-  if(confirm("Are you sure, you want to remove this user?"))
+  if(confirm("Bạn có chắc chắn muốn xóa tài khoản chưa xác thực này không?"))
   {
     let data = new FormData();
     data.append('user_id',user_id);
@@ -45,11 +67,11 @@ function remove_user(user_id)
     xhr.onload = function()
     {
       if(this.responseText == 1){
-        alert('success','User Removed!');
+        alert('success','Đã xóa tài khoản thành công!');
         get_users();
       }
       else{
-        alert('error','User removal failed!');
+        alert('error','Xóa tài khoản thất bại!');
       }
     }
     xhr.send(data);

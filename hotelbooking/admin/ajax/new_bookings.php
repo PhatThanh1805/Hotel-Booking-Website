@@ -19,49 +19,55 @@
     $table_data = "";
 
     if(mysqli_num_rows($res)==0){
-      echo"<b>No Data Found!</b>";
+      echo "<tr><td colspan='5' class='py-4 text-secondary fs-6'>Không tìm thấy dữ liệu đơn đặt phòng!</td></tr>";
       exit;
     }
 
     while($data = mysqli_fetch_assoc($res))
     {
-      $date = date("d-m-Y",strtotime($data['datentime']));
-      $checkin = date("d-m-Y",strtotime($data['check_in']));
-      $checkout = date("d-m-Y",strtotime($data['check_out']));
+      $date = date("d/m/Y H:i",strtotime($data['datentime']));
+      $checkin = date("d/m/Y",strtotime($data['check_in']));
+      $checkout = date("d/m/Y",strtotime($data['check_out']));
+      $price_formatted = number_format($data['price'] * 1000, 0, ',', '.');
+      $total_formatted = number_format($data['total_pay'] * 1000, 0, ',', '.');
 
       $table_data .="
         <tr>
           <td>$i</td>
-          <td>
-            <span class='badge bg-primary'>
-              Order ID: $data[order_id]
+          <td class='text-start'>
+            <span class='badge bg-teal mb-1 px-2 py-1'>
+              Mã đơn: $data[order_id]
             </span>
             <br>
-            <b>Name:</b> $data[user_name]
+            <b>Họ tên:</b> $data[user_name]
             <br>
-            <b>Phone No:</b> $data[phonenum]
+            <b>SĐT:</b> $data[phonenum]
+          </td>
+          <td class='text-start'>
+            <b>Tên phòng:</b> $data[room_name]
+            <br>
+            <b>Giá/đêm:</b> $price_formatted VNĐ
+          </td>
+          <td class='text-start'>
+            <b>Ngày nhận:</b> $checkin
+            <br>
+            <b>Ngày trả:</b> $checkout
+            <br>
+            <b>Đã thanh toán:</b> <span class='text-teal fw-bold'>$total_formatted VNĐ</span>
+            <br>
+            <b>Ngày đặt:</b> $date
           </td>
           <td>
-            <b>Room:</b> $data[room_name]
-            <br>
-            <b>Price:</b> ₹$data[price]
-          </td>
-          <td>
-            <b>Check-in:</b> $checkin
-            <br>
-            <b>Check-out:</b> $checkout
-            <br>
-            <b>Paid:</b> ₹$data[trans_amt]
-            <br>
-            <b>Date:</b> $date
-          </td>
-          <td>
-            <button type='button' onclick='assign_room($data[booking_id])' class='btn text-white btn-sm fw-bold custom-bg shadow-none' data-bs-toggle='modal' data-bs-target='#assign-room'>
-              <i class='bi bi-check2-square'></i> Assign Room
+            <button type='button' onclick='assign_room($data[booking_id])' class='btn text-white btn-sm fw-bold custom-bg shadow-none rounded-3 px-3' data-bs-toggle='modal' data-bs-target='#assign-room'>
+              <i class='bi bi-check2-square me-1'></i> Xếp số phòng
             </button>
             <br>
-            <button type='button' onclick='cancel_booking($data[booking_id])' class='mt-2 btn btn-outline-danger btn-sm fw-bold shadow-none'>
-              <i class='bi bi-trash'></i> Cancel Booking
+            <button type='button' onclick='open_guest_modal($data[booking_id], \"$data[order_id]\")' class='mt-2 btn btn-outline-teal btn-sm fw-bold shadow-none rounded-3 px-3'>
+              <i class='bi bi-person-vcard me-1'></i> Khai báo tạm trú
+            </button>
+            <br>
+            <button type='button' onclick='cancel_booking($data[booking_id])' class='mt-2 btn btn-outline-danger btn-sm fw-bold shadow-none rounded-3 px-3'>
+              <i class='bi bi-x-circle me-1'></i> Hủy đơn phòng
             </button>
           </td>
         </tr>

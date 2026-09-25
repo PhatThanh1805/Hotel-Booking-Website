@@ -1,12 +1,14 @@
-:root{
-  --teal: #2ec1ac;
-  --teal_hover: #279e8c;
+:root {
+  --teal: #14b8a6;
+  --teal_hover: #0d9488;
+  --dark-bg: #0f172a;
 }
 
-*{
-  font-family: 'Poppins', sans-serif;
+* {
+  font-family: 'Be Vietnam Pro', 'Poppins', sans-serif;
 }
-.h-font{
+
+.h-font {
   font-family: 'Merienda', cursive;
 }
 
@@ -20,59 +22,243 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.custom-bg{
-  background-color: var(--teal);
-  border: 1px solid var(--teal);
-}
-.custom-bg:hover{
-  background-color: var(--teal_hover);
-  border-color: var(--teal_hover);
+.text-teal {
+  color: var(--teal) !important;
 }
 
-.h-line{
-  width: 150px;
+.border-teal {
+  border-color: var(--teal) !important;
+}
+
+.bg-teal {
+  background-color: var(--teal) !important;
+}
+
+.custom-bg {
+  background-color: var(--teal) !important;
+  border: 1px solid var(--teal) !important;
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+.custom-bg:hover {
+  background-color: var(--teal_hover) !important;
+  border-color: var(--teal_hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+}
+
+.h-line {
+  width: 120px;
   margin: 0 auto;
-  height: 1.7px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
 }
 
-.custom-alert{
+.custom-alert {
   position: fixed;
   top: 80px;
   right: 25px;
+  z-index: 9999;
+  min-width: 300px;
+  max-width: 450px;
 }
 
-#dashboard-menu{
+#dashboard-menu {
   position: fixed;
-  height: 100%;
+  top: 66px;
+  bottom: 0;
+  left: 0;
+  width: 16.666667%;
   z-index: 11;
+  overflow-y: auto;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
 }
 
-/* width */
+#main-content {
+  margin-left: 16.666667%;
+  width: 83.333333%;
+  max-width: 83.333333%;
+}
+
+#main-content > .row > .col-lg-10 {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f1f5f9;
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(36,36,36);
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+/* 4 Trạng thái phòng Badges */
+.badge-status-available {
+  background-color: #10b981;
+  color: #fff;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.badge-status-cleaning {
+  background-color: #f59e0b;
+  color: #fff;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.badge-status-occupied {
+  background-color: #ef4444;
+  color: #fff;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.badge-status-booked {
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.badge-status-maintenance {
+  background-color: #6b7280;
+  color: #fff;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
 }
 
 @media screen and (max-width: 991px) {
-  #dashboard-menu{
+  #dashboard-menu {
     height: auto;
     width: 100%;
-  } 
-  #main-content{
-    margin-top: 60px;
+    position: relative;
+  }
+  #main-content {
+    margin-left: 0;
+    margin-top: 20px;
   }
 }
+
+/* ==========================================================================
+   Smooth Light / Dark Mode System (Admin Panel - Anti-Flash)
+   ========================================================================== */
+html.dark-mode,
+html.dark-mode body,
+body.dark-mode {
+  background-color: #0b1329 !important;
+  color: #e2e8f0 !important;
+}
+
+.btn-theme-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+.btn-theme-toggle:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+html.dark-mode .btn-theme-toggle,
+body.dark-mode .btn-theme-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #f8fafc !important;
+}
+
+html.dark-mode .bg-white, 
+html.dark-mode .bg-light,
+html.dark-mode .card:not(.bg-teal):not(.occupancy-gauge),
+body.dark-mode .bg-white, 
+body.dark-mode .bg-light,
+body.dark-mode .card:not(.bg-teal):not(.occupancy-gauge) {
+  background-color: #162032 !important;
+  color: #f1f5f9 !important;
+  border-color: #243048 !important;
+}
+
+html.dark-mode .text-dark,
+html.dark-mode h1, html.dark-mode h2, html.dark-mode h3, html.dark-mode h4, html.dark-mode h5, html.dark-mode h6,
+body.dark-mode .text-dark,
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 {
+  color: #f8fafc !important;
+}
+
+html.dark-mode .text-muted,
+html.dark-mode .text-secondary,
+body.dark-mode .text-muted,
+body.dark-mode .text-secondary {
+  color: #94a3b8 !important;
+}
+
+html.dark-mode .form-control,
+html.dark-mode .form-select,
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html.dark-mode .form-control::placeholder,
+body.dark-mode .form-control::placeholder {
+  color: #64748b !important;
+}
+
+html.dark-mode .table,
+body.dark-mode .table {
+  color: #e2e8f0 !important;
+}
+
+html.dark-mode .table tr,
+html.dark-mode .table td,
+html.dark-mode .table th,
+body.dark-mode .table tr,
+body.dark-mode .table td,
+body.dark-mode .table th {
+  background-color: #162032 !important;
+  border-color: #243048 !important;
+  color: #e2e8f0 !important;
+}
+
+html.dark-mode .modal-content,
+body.dark-mode .modal-content {
+  background-color: #162032 !important;
+  color: #f8fafc !important;
+  border: 1px solid #243048 !important;
+}
+
+html.dark-mode .dropdown-menu,
+body.dark-mode .dropdown-menu {
+  background-color: #162032 !important;
+  border-color: #243048 !important;
+}
+
+html.dark-mode .dropdown-item,
+body.dark-mode .dropdown-item {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .dropdown-item:hover,
+body.dark-mode .dropdown-item:hover {
+  background-color: #243048 !important;
+  color: #ffffff !important;
+}
+
+

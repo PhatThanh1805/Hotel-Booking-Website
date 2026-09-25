@@ -1,0 +1,61 @@
+Searched for "SITE_URL"
+Viewed essentials.php:1-157
+
+À ra là sếp đã deploy trọn gói cả Web + Database lên InfinityFree rồi! Thế thì ngon lành quá. 
+
+Tuy nhiên, lý do vì sao sếp cập nhật trên web live rồi mà **mấy anh em truy cập vẫn không thấy đồng bộ hoặc bị lỗi ảnh/dữ liệu** là do dính **3 cái bẫy kỹ thuật** điển hình dưới đây:
+
+---
+
+### 🛑 1. Bẫy dính cứng `SITE_URL = http://localhost:8000/` (Gây vỡ ảnh & sai link)
+Trong file [admin/inc/essentials.php](file:///e:/School/KiemThu/Hotel-Booking-Website/hotelbooking/admin/inc/essentials.php#L5), code đang bị fix cứng địa chỉ local:
+```php
+define('SITE_URL','http://localhost:8000/');
+```
+👉 **Hậu quả**: Kể cả khi trang web chạy trên link InfinityFree (`http://bookinghotel.freehosting.dev...`), các đường dẫn hình ảnh (phòng, carousel, tiện ích) vẫn cố gắng tải từ `http://localhost:8000/images/...`. Kết quả là trên máy sếp có thể thấy (vì sếp bật local server), nhưng máy anh em truy cập vào sẽ **bị lỗi vỡ ảnh hoàn toàn**.
+
+🔥 **Cách sửa dứt điểm** (Sửa file `admin/inc/essentials.php` thành code tự động bắt domain):
+```php
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https://" : "http://";
+define('SITE_URL', $protocol . $_SERVER['HTTP_HOST'] . '/');
+```
+*(Nếu trên host sếp để code nằm trong thư mục con `hotelbooking` thì sửa thành: `$protocol . $_SERVER['HTTP_HOST'] . '/hotelbooking/'`)*
+
+---
+
+### 🛑 2. File `db_config.php` trên Server InfinityFree chưa đổi thông tin DB
+Nếu sếp bê nguyên file [admin/inc/db_config.php](file:///e:/School/KiemThu/Hotel-Booking-Website/hotelbooking/admin/inc/db_config.php#L3-L6) từ máy local lên host mà chưa chỉnh sửa, thì trang live trên InfinityFree sẽ bị lỗi kết nối DB.
+
+👉 **Cách kiểm tra**: Đăng nhập vào **File Manager** trên InfinityFree, mở file `admin/inc/db_config.php` trên server và cập nhật thông tin chuẩn của InfinityFree (nhìn theo đúng bảng phpMyAdmin sếp chụp màn hình):
+
+```php
+<?php 
+  $hname = 'sql111.infinityfree.com'; // Hoặc MySQL Hostname trong vPanel InfinityFree
+  $uname = 'if0_42934171';            // Username MySQL InfinityFree
+  $pass = 'MAT_KHAU_VPANEL_CU_A_SEP'; // Mật khẩu vPanel / FTP của sếp
+  $db   = 'if0_42934171_hotelbooking'; // Tên Database trong ảnh sếp chụp
+
+  $con = mysqli_connect($hname,$uname,$pass,$db);
+
+  if(!$con){
+    die("Cannot Connect to Database".mysqli_connect_error());
+  }
+?>
+```
+
+---
+
+### 🛑 3. Anh em vẫn thói quen mở `localhost:8000` thay vì vào Domain Online
+Nhiều khi sếp đưa web lên host rồi, nhưng mấy ông anh em ở nhà chạy project theo thói quen cũ: bật `start_server.bat` lên rồi gõ `http://localhost:8000`. 
+- Nếu gõ `localhost:8000` thì app lại đọc DB dưới máy cá nhân của ông đó.
+- 👉 **Khắc phục**: Gửi duy nhất đường link online trên InfinityFree (ví dụ: `http://bookinghotel.freehosting.dev/...`) cho tất cả anh em dùng chung trên trình duyệt.
+
+---
+
+### 🔄 4. Cache trình duyệt của anh em (Browser Cache)
+Sau khi sếp thêm/sửa phòng hoặc dữ liệu trên bản live, dữ liệu AJAX hoặc hình ảnh cũ có thể bị trình duyệt của anh em lưu Cache. 
+- Nhắc anh em bấm `Ctrl + F5` (hoặc `Shift + F5`) để xoá sạch cache trang web và nhận dữ liệu mới nhất từ server InfinityFree.
+
+---
+
+Sếp check lại file `admin/inc/essentials.php` và `db_config.php` trên host xem dính cái nào nhé! Nếu sếp muốn em sửa trực tiếp file code local để sếp chỉ việc upload đè lên host thì hú em 1 tiếng!

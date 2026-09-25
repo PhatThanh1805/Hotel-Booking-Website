@@ -6,7 +6,7 @@
   require('inc/paytm/config_paytm.php');
   require('inc/paytm/encdec_paytm.php');
 
-  date_default_timezone_set("Asia/Kolkata");
+  date_default_timezone_set("Asia/Ho_Chi_Minh");
 
   session_start();
   unset($_SESSION['room']);
