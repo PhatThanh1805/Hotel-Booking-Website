@@ -1,12 +1,15 @@
 <?php 
 
-  $hname = 'localhost';
+  $hname = '127.0.0.1';
   $uname = 'root';
   $pass = '';
   $db = 'hotelbooking';
 
   if(!isset($con) || !$con){
-    $con = mysqli_connect($hname,$uname,$pass,$db);
+    $con = @mysqli_connect($hname,$uname,$pass,$db);
+    if(!$con){
+      $con = mysqli_connect('localhost',$uname,$pass,$db);
+    }
   }
 
   if(!$con){
